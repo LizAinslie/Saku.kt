@@ -43,10 +43,7 @@ fun SakuPanel(
                     color = background,
                     shape = panelShape
                 )
-                .border(
-                    border = BorderStroke(1.dp, border),
-                    shape = panelShape
-                ).shadow(
+                .shadow(
                     elevation = 10.dp,
                     shape = panelShape,
                     ambientColor = background,
