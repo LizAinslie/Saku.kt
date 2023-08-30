@@ -61,6 +61,12 @@ kotlin {
                 implementation(compose.desktop.common)
             }
         }
+
+        val desktopTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
+        }
     }
 }
 
@@ -74,6 +80,7 @@ tasks.withType<DokkaTask>().configureEach {
         // ..
 
         includes.from(project.files(), "README.md")
+        samples.from(project.files(), "$projectDir/src/commonTest/kotlin/")
 
         sourceLink {
             localDirectory.set(projectDir.resolve("src"))

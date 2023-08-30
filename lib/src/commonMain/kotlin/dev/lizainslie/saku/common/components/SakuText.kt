@@ -17,6 +17,29 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 
+/**
+ * A text component that adheres to the Sakura-cyberpunk typographical theme and
+ * color scheme
+ *
+ * @param text The text content
+ * @param modifier A compose modifier
+ * @param color The foreground color for this text
+ * @param fontSize The size of the font used to render this text element
+ * @param fontStyle The style of the font used to render this text element
+ * @param fontWeight The weight of the font used to render this text element
+ * @param fontFamily The font family used to render this text element
+ * @param letterSpacing The spacing between individual characters in this text element
+ * @param textDecoration An optional decoration for this text
+ * @param textAlign Alignment constraints for this text
+ * @param lineHeight The line height used to render this text
+ * @param overflow Constraints controlling how this text element handles overflowing content
+ * @param softWrap Whether this text should automatically soft-wrap to the next line
+ * @param maxLines The maximum amount of lines this text element can render
+ * @param minLines The minimum amount of lines this text element can render
+ * @param style The text style to apply to this text element
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
 @Composable
 fun SakuText(
     text: String,
@@ -62,8 +85,16 @@ fun SakuText(
     )
 }
 
-val LocalTextStyle = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }
+internal val LocalTextStyle = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }
 
+/**
+ * A helper context used to pass text styles to child [dev.lizainslie.saku.common.components.SakuText] components
+ *
+ * @param value The style to apply to children
+ * @param content Child content block
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
 @Composable
 fun ProvideTextStyle(value: TextStyle, content: @Composable () -> Unit) {
     val mergedStyle = LocalTextStyle.current.merge(value)

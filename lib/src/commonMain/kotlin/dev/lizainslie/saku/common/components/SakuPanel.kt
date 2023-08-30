@@ -18,6 +18,19 @@ import dev.lizainslie.saku.common.theme.colorWhitePurple
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
 
+/**
+ * A stylized Sakura-cyberpunk panel
+ *
+ * @param modifier A Compose modifier for this panel
+ * @param corner The corner radius of this panel
+ * @param background The background color of this panel
+ * @param foreground The foreground color of this panel
+ * @param padding Padding for the contents of this panel
+ * @param corners Optional definition of which corners to cut
+ * @param content The children of this panel
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
 @Composable
 fun SakuPanel(
     modifier: Modifier = Modifier,

@@ -19,14 +19,22 @@ import dev.lizainslie.saku.common.util.Corners
 
 
 /**
- * A stylized Sakura-cyberpunk button.
+ * A stylized Sakura-cyberpunk button. When clicked, [onClick] will be called.
  *
- * @param onClick A handler that is run when the button is clicked
- * @param modifier A Compose modifier for the button
- * @param enabled Whether to allow the user to activate the button
- * @param background The background color of the button
- * @param foreground The foreground color of the button
- * @param corner The corner radius size.
+ * ## Examples
+ * ### A basic button
+ * ```kt
+ * SakuButton({ println("I was clicked!") }) {
+ *     SakuText("A Sample Button")
+ * }
+ * ```
+ *
+ * @param onClick A handler that is run when this button is clicked
+ * @param modifier A Compose modifier for this button
+ * @param enabled Whether to allow the user to activate this button
+ * @param background The background color of this button
+ * @param foreground The foreground color of this button
+ * @param corner The corner radius of this button
  * @param padding Padding for the contents of this button
  * @param corners Optional definition of which corners to cut
  * @param content The children of this button
