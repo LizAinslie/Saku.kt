@@ -15,6 +15,7 @@ import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.theme.colorBlackPurple
 import dev.lizainslie.saku.common.theme.colorLightPurple
 import dev.lizainslie.saku.common.util.CornerBoxShape
+import dev.lizainslie.saku.common.util.Corners
 
 
 @Composable
@@ -26,6 +27,7 @@ fun SakuButton(
     foreground: Color = colorBlackPurple,
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
+    corners: Corners = Corners(),
     content: @Composable RowScope.() -> Unit
 ) {
     Box(
@@ -35,7 +37,7 @@ fun SakuButton(
             .padding(padding)
             .background(
                 background,
-                CornerBoxShape(padding, corner)
+                CornerBoxShape(padding, corner, corners)
             )
     ) {
         ProvideTextStyle(SakuTheme.typography.button.copy(foreground)) {

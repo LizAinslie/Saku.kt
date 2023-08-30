@@ -17,6 +17,7 @@ import dev.lizainslie.saku.common.components.SakuButton
 import dev.lizainslie.saku.common.components.SakuPanel
 import dev.lizainslie.saku.common.components.SakuText
 import dev.lizainslie.saku.common.theme.SakuTheme
+import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.demo.components.CounterButton
 
 @Composable
@@ -34,11 +35,12 @@ fun App() {
                 corner = 12.5.dp
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     SakuText("Some Testing Text", modifier = Modifier.padding(5.dp, 0.dp))
-                    CounterButton()
+                    CounterButton(Corners(topRight = false))
+                    CounterButton(Corners(bottomLeft = false))
                 }
             }
         }

@@ -16,6 +16,7 @@ import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.theme.colorBlackPurple
 import dev.lizainslie.saku.common.theme.colorWhitePurple
 import dev.lizainslie.saku.common.util.CornerBoxShape
+import dev.lizainslie.saku.common.util.Corners
 
 @Composable
 fun SakuPanel(
@@ -23,10 +24,11 @@ fun SakuPanel(
     corner: Dp = 5.dp,
     background: Color = colorBlackPurple,
     foreground: Color = colorWhitePurple,
-    padding: PaddingValues = PaddingValues(), // default zero
+    padding: PaddingValues = PaddingValues(),
+    corners: Corners = Corners(),
     content: @Composable BoxScope.() -> Unit,
 ) {
-    val panelShape = CornerBoxShape(padding, corner)
+    val panelShape = CornerBoxShape(padding, corner, corners)
 
     ProvideTextStyle(SakuTheme.typography.body.copy(foreground)) {
         Box(
