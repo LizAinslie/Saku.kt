@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.Dp
@@ -39,12 +40,17 @@ fun SakuPanel(
             modifier = modifier
                 .padding(padding)
                 .background(
-                    background,
-                    panelShape
+                    color = background,
+                    shape = panelShape
                 )
                 .border(
-                    BorderStroke(1.dp, border),
-                    panelShape
+                    border = BorderStroke(1.dp, border),
+                    shape = panelShape
+                ).shadow(
+                    elevation = 10.dp,
+                    shape = panelShape,
+                    ambientColor = background,
+                    spotColor = background,
                 ),
             content = content
         )
