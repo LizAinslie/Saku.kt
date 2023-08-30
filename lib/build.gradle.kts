@@ -1,9 +1,14 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
+import org.jetbrains.dokka.gradle.DokkaTask
+import java.net.URL
+
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("org.jetbrains.dokka") version "1.8.20"
 }
 
 version = rootProject.version
@@ -55,6 +60,25 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.common)
             }
+        }
+    }
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    moduleName.set("Saku.kt")
+    moduleVersion.set(project.version.toString())
+
+    dokkaSourceSets.configureEach {
+        // ..
+        // source set configuration section
+        // ..
+
+        includes.from(project.files(), "README.md")
+
+        sourceLink {
+            localDirectory.set(projectDir.resolve("src"))
+            remoteUrl.set(URL("https://github.com/lizainslie/Saku.kt/tree/main/lib/src"))
+            remoteLineSuffix.set("#L")
         }
     }
 }
