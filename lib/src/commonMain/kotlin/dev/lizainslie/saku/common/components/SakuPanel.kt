@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.theme.colorBlackPurple
 import dev.lizainslie.saku.common.theme.colorWhitePurple
-import dev.lizainslie.saku.common.util.generateCornerBoxPath
+import dev.lizainslie.saku.common.util.CornerBoxShape
 
 @Composable
 fun SakuPanel(
@@ -26,9 +26,7 @@ fun SakuPanel(
     padding: PaddingValues = PaddingValues(), // default zero
     content: @Composable BoxScope.() -> Unit,
 ) {
-    val panelShape = GenericShape {size, layoutDirection ->
-        generateCornerBoxPath(size, corner, layoutDirection, padding)
-    }
+    val panelShape = CornerBoxShape(padding, corner)
 
     ProvideTextStyle(SakuTheme.typography.body.copy(foreground)) {
         Box(

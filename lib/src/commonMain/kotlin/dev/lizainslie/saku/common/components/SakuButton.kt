@@ -3,10 +3,8 @@ package dev.lizainslie.saku.common.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
@@ -16,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.theme.colorBlackPurple
 import dev.lizainslie.saku.common.theme.colorLightPurple
-import dev.lizainslie.saku.common.util.generateCornerBoxPath
+import dev.lizainslie.saku.common.util.CornerBoxShape
 
 
 @Composable
@@ -37,9 +35,7 @@ fun SakuButton(
             .padding(padding)
             .background(
                 background,
-                GenericShape { size, layoutDirection ->
-                    generateCornerBoxPath(size, corner, layoutDirection, padding)
-                },
+                CornerBoxShape(padding, corner)
             )
     ) {
         ProvideTextStyle(SakuTheme.typography.button.copy(foreground)) {
