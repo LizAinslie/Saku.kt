@@ -18,6 +18,21 @@ import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
 
 
+/**
+ * A stylized Sakura-cyberpunk button.
+ *
+ * @param onClick A handler that is run when the button is clicked
+ * @param modifier A Compose modifier for the button
+ * @param enabled Whether to allow the user to activate the button
+ * @param background The background color of the button
+ * @param foreground The foreground color of the button
+ * @param corner The corner radius size.
+ * @param padding Padding for the contents of this button
+ * @param corners Optional definition of which corners to cut
+ * @param content The children of this button
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
 @Composable
 fun SakuButton(
     onClick: () -> Unit,
