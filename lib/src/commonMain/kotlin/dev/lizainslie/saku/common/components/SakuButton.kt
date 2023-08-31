@@ -49,7 +49,8 @@ fun SakuButton(
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners(),
-    arrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
+    verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
 ) {
     ProvideTextStyle(SakuTheme.typography.button.copy(foreground)) {
@@ -62,7 +63,8 @@ fun SakuButton(
                     background,
                     CornerBoxShape(padding, corner, corners)
                 ),
-            horizontalArrangement = arrangement,
+            horizontalArrangement = horizontalArrangement,
+            verticalAlignment = verticalAlignment,
             content = content
         )
     }
@@ -87,7 +89,8 @@ fun SakuButton(
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners(),
-    arrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
+    verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
 ) {
     SakuButton(
@@ -99,7 +102,8 @@ fun SakuButton(
         corner,
         padding,
         corners,
-        arrangement,
+        horizontalArrangement,
+        verticalAlignment,
         content
     )
 }
