@@ -2,18 +2,25 @@ package dev.lizainslie.saku.demo
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import compose.icons.FeatherIcons
 import dev.lizainslie.saku.common.components.*
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
+import compose.icons.feathericons.MessageCircle
+import compose.icons.feathericons.UserPlus
+import dev.lizainslie.saku.common.theme.colorDark
+import dev.lizainslie.saku.common.theme.colorLight
 
 @Composable
 @Preview
@@ -63,6 +70,15 @@ fun App() {
                                     color = SakuTheme.colors.foreground
                                 ),
                                 lineHeight = 24.sp,
+                                overflow = TextOverflow.Ellipsis
+                            )
+
+                            SakuText(
+                                """
+                                    Meow mrrp nya~ meow meow meow mrrrrrrrrp
+                                """.trimIndent(),
+                                overflow = TextOverflow.Ellipsis,
+                                maxLines = 4,
                             )
 
                             Row(
@@ -73,7 +89,13 @@ fun App() {
                                     modifier = Modifier.fillMaxWidth(.5f),
                                     corners = Corners(topRight = false)
                                 ) {
-                                    SakuText("Like :3")
+                                    Icon(
+                                        imageVector = FeatherIcons.UserPlus,
+                                        "follow icon",
+                                        tint = colorDark,
+                                        modifier = Modifier.size(16.dp),
+                                    )
+                                    SakuText("Follow")
                                 }
 
                                 SakuButton(
@@ -81,7 +103,13 @@ fun App() {
                                     corners = Corners(bottomLeft = false),
                                     theme = SakuButtonTheme.Secondary,
                                 ) {
-                                    SakuText("Dislike")
+                                    Icon(
+                                        imageVector = FeatherIcons.MessageCircle,
+                                        "chat icon",
+                                        tint = colorLight,
+                                        modifier = Modifier.size(16.dp),
+                                    )
+                                    SakuText("Chat")
                                 }
                             }
                         }
