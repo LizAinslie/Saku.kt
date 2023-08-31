@@ -7,48 +7,55 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 class SakuColors(
-    darkPurple: Color = colorDarkPurple,
-    lightPurple: Color = colorLightPurple,
-    blackPurple: Color = colorBlackPurple,
-    whitePurple: Color = colorWhitePurple,
+    primary: Color = colorPink,
+    secondary: Color = colorMutedPurple,
+    background: Color = colorDark,
+    foreground: Color = colorLight
 ) {
-    var darkPurple by mutableStateOf(darkPurple)
+    var primary by mutableStateOf(primary)
         private set
-    var lightPurple by mutableStateOf(lightPurple)
+    var secondary by mutableStateOf(secondary)
         private set
-    var blackPurple by mutableStateOf(blackPurple)
+    var background by mutableStateOf(background)
         private set
-    var whitePurple by mutableStateOf(whitePurple)
+    var foreground by mutableStateOf(foreground)
         private set
 
     fun copy(
-        darkPurple: Color = this.darkPurple,
-        lightPurple: Color = this.lightPurple,
-        blackPurple: Color = this.blackPurple,
-        whitePurple: Color = this.whitePurple,
+        darkPurple: Color = this.secondary,
+        lightPurple: Color = this.primary,
+        blackPurple: Color = this.background,
+        whitePurple: Color = this.foreground,
     ): SakuColors = SakuColors(
-        darkPurple, lightPurple, blackPurple, whitePurple
+        darkPurple, lightPurple, blackPurple, whitePurple,
     )
     fun updateColorsFrom(other: SakuColors) {
-        darkPurple = other.darkPurple
-        lightPurple = other.lightPurple
-        blackPurple = other.blackPurple
-        whitePurple = other.whitePurple
+        secondary = other.secondary
+        primary = other.primary
+        background = other.background
+        foreground = other.foreground
     }
 }
 
-val colorDarkPurple = Color(0xff2f184c)
-val colorLightPurple = Color(0xffb464df)
-val colorBlackPurple = Color(0xff06000a)
-val colorWhitePurple = Color(0xffc9c4e1)
+////////// BASE COLORS /////////
+
+// Primary pink
+val colorPink = Color(0xffb464df)
+// Blackest purple
+val colorDark = Color(0xff06000a)
+// Lightest purple - close to white
+val colorLight = Color(0xffc9c4e1)
+
+// Dark secondary purple
+val colorMutedPurple = Color(0xff2f184c)
 
 fun colors(
-    darkPurple: Color = colorDarkPurple,
-    lightPurple: Color = colorLightPurple,
-    blackPurple: Color = colorBlackPurple,
-    whitePurple: Color = colorWhitePurple,
+    primary: Color = colorPink,
+    secondary: Color = colorMutedPurple,
+    background: Color = colorDark,
+    foreground: Color = colorLight,
 ) = SakuColors(
-    darkPurple, lightPurple, blackPurple, whitePurple
+    primary, secondary, background, foreground
 )
 
 internal val LocalColors = staticCompositionLocalOf { colors() }

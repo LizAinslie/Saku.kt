@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -13,8 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.SakuTheme
-import dev.lizainslie.saku.common.theme.colorBlackPurple
-import dev.lizainslie.saku.common.theme.colorWhitePurple
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
 
@@ -35,8 +32,8 @@ import dev.lizainslie.saku.common.util.Corners
 fun SakuPanel(
     modifier: Modifier = Modifier,
     corner: Dp = 5.dp,
-    background: Color = colorBlackPurple,
-    foreground: Color = colorWhitePurple,
+    background: Color = SakuTheme.colors.background,
+    foreground: Color = SakuTheme.colors.foreground,
     padding: PaddingValues = PaddingValues(),
     corners: Corners = Corners(),
     content: @Composable BoxScope.() -> Unit,

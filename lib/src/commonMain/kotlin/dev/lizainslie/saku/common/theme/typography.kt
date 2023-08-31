@@ -31,25 +31,25 @@ data class SakuTypography(
         fontFamily = bellota,
         fontWeight = FontWeight.Bold,
         fontSize = 48.sp,
-        color = colorBlackPurple,
+        color = colorDark,
     ),
     val headingH2: TextStyle = TextStyle(
         fontFamily = bellota,
         fontWeight = FontWeight.Normal,
         fontSize = 36.sp,
-        color = colorBlackPurple,
+        color = colorDark,
     ),
     val body: TextStyle = TextStyle(
         fontFamily = bellotaText,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = colorBlackPurple,
+        color = colorDark,
     ),
     val button: TextStyle = TextStyle(
         fontFamily = bellotaText,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = colorBlackPurple,
+        color = colorDark,
     ),
 )
 
