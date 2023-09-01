@@ -10,7 +10,8 @@ class SakuColors(
     primary: Color = colorPink,
     secondary: Color = colorMutedPurple,
     background: Color = colorDark,
-    foreground: Color = colorLight
+    foreground: Color = colorLight,
+    danger: Color = colorRedBackground
 ) {
     var primary by mutableStateOf(primary)
         private set
@@ -20,14 +21,17 @@ class SakuColors(
         private set
     var foreground by mutableStateOf(foreground)
         private set
+    var danger by mutableStateOf(danger)
+        private set
 
     fun copy(
-        darkPurple: Color = this.secondary,
-        lightPurple: Color = this.primary,
-        blackPurple: Color = this.background,
-        whitePurple: Color = this.foreground,
+        primary: Color = this.primary,
+        secondary: Color = this.secondary,
+        background: Color = this.background,
+        foreground: Color = this.foreground,
+        danger: Color = this.danger,
     ): SakuColors = SakuColors(
-        darkPurple, lightPurple, blackPurple, whitePurple,
+        primary, secondary, background, foreground, danger
     )
     fun updateColorsFrom(other: SakuColors) {
         secondary = other.secondary
@@ -42,20 +46,22 @@ class SakuColors(
 // Primary pink
 val colorPink = Color(0xffb464df)
 // Blackest purple
-val colorDark = Color(0xff06000a)
+val colorDark = Color(0xff180029) // Color(0xff06000a)
 // Lightest purple - close to white
 val colorLight = Color(0xffc9c4e1)
-
 // Dark secondary purple
-val colorMutedPurple = Color(0xff2f184c)
+val colorMutedPurple = Color(0xff3a1d5d)
+// Red
+val colorRedBackground = Color(0xffb94860)
 
 fun colors(
     primary: Color = colorPink,
     secondary: Color = colorMutedPurple,
     background: Color = colorDark,
     foreground: Color = colorLight,
+    danger: Color = colorRedBackground
 ) = SakuColors(
-    primary, secondary, background, foreground
+    primary, secondary, background, foreground, danger
 )
 
 internal val LocalColors = staticCompositionLocalOf { colors() }

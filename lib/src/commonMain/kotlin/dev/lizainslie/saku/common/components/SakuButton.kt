@@ -77,6 +77,7 @@ data class SakuButtonTheme(
     companion object {
         val Primary = SakuButtonTheme(colorPink, colorDark)
         val Secondary = SakuButtonTheme(colorMutedPurple, colorLight)
+        val Danger = SakuButtonTheme(colorRedBackground, colorLight)
     }
 }
 

@@ -19,6 +19,7 @@ import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
 import compose.icons.feathericons.MessageCircle
 import compose.icons.feathericons.UserPlus
+import compose.icons.feathericons.UserX
 import dev.lizainslie.saku.common.theme.colorDark
 import dev.lizainslie.saku.common.theme.colorLight
 
@@ -49,7 +50,7 @@ fun App() {
             Row {
                 SakuPanel(
                     corner = 12.5.dp,
-                    modifier = Modifier.width(200.dp)
+                    modifier = Modifier.width(300.dp)
                 ) {
                     Column (modifier = Modifier.width(IntrinsicSize.Max)) {
                         SakuImage(
@@ -86,8 +87,8 @@ fun App() {
                                 modifier = Modifier.fillMaxWidth(),
                             ) {
                                 SakuButton(
-                                    modifier = Modifier.fillMaxWidth(.5f),
-                                    corners = Corners(topRight = false)
+                                    modifier = Modifier.fillMaxWidth(1f / 3),
+                                    corners = Corners.BottomLeft
                                 ) {
                                     Icon(
                                         imageVector = FeatherIcons.UserPlus,
@@ -99,8 +100,8 @@ fun App() {
                                 }
 
                                 SakuButton(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    corners = Corners(bottomLeft = false),
+                                    modifier = Modifier.fillMaxWidth(1f / 2),
+                                    corners = Corners.None,
                                     theme = SakuButtonTheme.Secondary,
                                 ) {
                                     Icon(
@@ -110,6 +111,21 @@ fun App() {
                                         modifier = Modifier.size(16.dp),
                                     )
                                     SakuText("Chat")
+                                }
+
+
+                                SakuButton(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    corners = Corners.TopRight,
+                                    theme = SakuButtonTheme.Danger,
+                                ) {
+                                    Icon(
+                                        imageVector = FeatherIcons.UserX,
+                                        "block icon",
+                                        tint = colorLight,
+                                        modifier = Modifier.size(16.dp),
+                                    )
+                                    SakuText("Block")
                                 }
                             }
                         }
