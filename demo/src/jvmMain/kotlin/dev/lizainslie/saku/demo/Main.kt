@@ -22,6 +22,7 @@ import compose.icons.feathericons.UserPlus
 import compose.icons.feathericons.UserX
 import dev.lizainslie.saku.common.theme.colorDark
 import dev.lizainslie.saku.common.theme.colorLight
+import dev.lizainslie.saku.common.util.Extrude
 
 @Composable
 @Preview
@@ -56,7 +57,8 @@ fun App() {
                         SakuImage(
                             painter = painterResource("img/lizzy.png"),
                             contentScale = ContentScale.FillWidth,
-                            corners = Corners(bottomLeft = false),
+                            corners = Corners.TopRight,
+                            extrude = Extrude.BottomRight,
                             corner = 12.5.dp,
                         )
 
@@ -70,7 +72,8 @@ fun App() {
                                     fontSize = 24.sp,
                                     color = SakuTheme.colors.foreground
                                 ),
-                                lineHeight = 24.sp,
+                                modifier = Modifier.padding(),
+                                lineHeight = 16.sp,
                                 overflow = TextOverflow.Ellipsis
                             )
 

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
+import dev.lizainslie.saku.common.util.Extrude
 
 /**
  * A stylized Sakura-cyberpunk panel
@@ -35,10 +36,11 @@ fun SakuPanel(
     background: Color = SakuTheme.colors.background,
     foreground: Color = SakuTheme.colors.foreground,
     padding: PaddingValues = PaddingValues(),
-    corners: Corners = Corners(),
+    corners: Corners = Corners.Both,
+    extrude: Extrude = Extrude.None,
     content: @Composable BoxScope.() -> Unit,
 ) {
-    val panelShape = CornerBoxShape(padding, corner, corners)
+    val panelShape = CornerBoxShape(padding, corner, corners, extrude)
 
     ProvideTextStyle(SakuTheme.typography.body.copy(foreground)) {
         Box(

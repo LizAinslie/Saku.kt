@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
+import dev.lizainslie.saku.common.util.Extrude
 
 @Composable
 fun SakuImage(
@@ -19,12 +20,13 @@ fun SakuImage(
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.None,
     corner: Dp = 5.dp,
-    corners: Corners = Corners(),
+    corners: Corners = Corners.Both,
+    extrude: Extrude = Extrude.None,
 ) {
     Image(
         painter = painter,
         contentDescription = contentDescription,
         contentScale = contentScale,
-        modifier = modifier.clip(CornerBoxShape(PaddingValues(), corner, corners))
+        modifier = modifier.clip(CornerBoxShape(PaddingValues(), corner, corners, extrude))
     )
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.*
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
+import dev.lizainslie.saku.common.util.Extrude
 
 /**
  * A stylized Sakura-cyberpunk button. When clicked, [onClick] will be called.
@@ -49,6 +50,7 @@ fun SakuButton(
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners.Both,
+    extrude: Extrude = Extrude.None,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
@@ -61,7 +63,7 @@ fun SakuButton(
                 .padding(padding)
                 .background(
                     background,
-                    CornerBoxShape(padding, corner, corners)
+                    CornerBoxShape(padding, corner, corners, extrude)
                 ),
             horizontalArrangement = horizontalArrangement,
             verticalAlignment = verticalAlignment,
@@ -90,6 +92,7 @@ fun SakuButton(
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners.Both,
+    extrude: Extrude = Extrude.None,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
@@ -103,6 +106,7 @@ fun SakuButton(
         corner,
         padding,
         corners,
+        extrude,
         horizontalArrangement,
         verticalAlignment,
         content
