@@ -48,7 +48,7 @@ fun SakuButton(
     foreground: Color = colorDark,
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
-    corners: Corners = Corners(),
+    corners: Corners = Corners.Both,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
@@ -88,7 +88,7 @@ fun SakuButton(
     theme: SakuButtonTheme = SakuButtonTheme.Primary,
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
-    corners: Corners = Corners(),
+    corners: Corners = Corners.Both,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit

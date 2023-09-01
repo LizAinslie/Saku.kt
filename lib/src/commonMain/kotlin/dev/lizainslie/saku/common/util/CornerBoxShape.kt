@@ -13,7 +13,14 @@ import androidx.compose.ui.unit.dp
 data class Corners(
     val topRight: Boolean = true,
     val bottomLeft: Boolean = true
-)
+) {
+    companion object {
+        val TopRight = Corners(topRight = true, bottomLeft = false)
+        val BottomLeft = Corners(topRight = false, bottomLeft = true)
+        val Both = Corners(topRight = true, bottomLeft = true)
+        val None = Corners(topRight = false, bottomLeft = false)
+    }
+}
 
 class CornerBoxShape(
     private val padding: PaddingValues,
