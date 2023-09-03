@@ -93,10 +93,10 @@ fun App() {
                                     modifier = Modifier.fillMaxWidth(1f / 3),
                                     corners = Corners.BottomLeft
                                 ) {
-                                    Icon(
+                                    SakuIcon(
                                         imageVector = FeatherIcons.UserPlus,
                                         "follow icon",
-                                        tint = colorDark,
+                                        color = colorDark,
                                         modifier = Modifier.size(16.dp),
                                     )
                                     SakuText("Follow")
@@ -107,10 +107,10 @@ fun App() {
                                     corners = Corners.None,
                                     theme = SakuButtonTheme.Secondary,
                                 ) {
-                                    Icon(
+                                    SakuIcon(
                                         imageVector = FeatherIcons.MessageCircle,
                                         "chat icon",
-                                        tint = colorLight,
+                                        color = colorLight,
                                         modifier = Modifier.size(16.dp),
                                     )
                                     SakuText("Chat")
@@ -122,10 +122,10 @@ fun App() {
                                     corners = Corners.TopRight,
                                     theme = SakuButtonTheme.Danger,
                                 ) {
-                                    Icon(
+                                    SakuIcon(
                                         imageVector = FeatherIcons.UserX,
                                         "block icon",
-                                        tint = colorLight,
+                                        color = colorLight,
                                         modifier = Modifier.size(16.dp),
                                     )
                                     SakuText("Block")
