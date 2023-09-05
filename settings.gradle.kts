@@ -23,4 +23,4 @@ pluginManagement {
 rootProject.name = "saku"
 
 include(":lib")
-include(":demo")
+include(":examples:kitchen-sink")
