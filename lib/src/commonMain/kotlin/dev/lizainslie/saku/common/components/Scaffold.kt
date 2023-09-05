@@ -12,7 +12,7 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun Scaffold(content: BoxScope.() -> Unit) {
+fun Scaffold(content: @Composable BoxScope.() -> Unit) {
     Box(modifier = Modifier.fillMaxSize().paint(
         painterResource("img/background.jpg"),
         contentScale = ContentScale.Crop,
