@@ -10,7 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
 object SakuTheme {
 
@@ -30,6 +31,7 @@ object SakuTheme {
         get() = LocalDimensions.current
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun SakuTheme(
     colors: SakuColors = SakuTheme.colors,
