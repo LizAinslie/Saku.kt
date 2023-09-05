@@ -38,9 +38,14 @@ import dev.lizainslie.saku.common.util.Extrude
  * @param enabled Whether to allow the user to activate this button
  * @param background The background color of this button
  * @param foreground The foreground color of this button
+ * @param hoverBackground The background color of this button while hovered
+ * @param hoverForeground The foreground color of this button while hovered
  * @param corner The corner radius of this button
  * @param padding Padding for the contents of this button
  * @param corners Optional definition of which corners to cut
+ * @param extrude Optional definition of which corners to extrude
+ * @param horizontalArrangement The horizontal arrangement of this button's content
+ * @param verticalAlignment The vertical alignment of this button's content
  * @param content The children of this button
  *
  * @author Elizabeth Hazel Ainslie
