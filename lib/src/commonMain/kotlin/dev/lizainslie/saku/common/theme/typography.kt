@@ -5,25 +5,28 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.Font
+
+internal expect fun font(name: String, res: String, weight: FontWeight, style: FontStyle): Font
+
 
 private val bellota = FontFamily(
-    Font("font/Bellota/Bellota-Regular.ttf", FontWeight.Normal, FontStyle.Normal),
-    Font("font/Bellota/Bellota-Italic.ttf", FontWeight.Normal, FontStyle.Italic),
-    Font("font/Bellota/Bellota-Bold.ttf", FontWeight.Bold, FontStyle.Normal),
-    Font("font/Bellota/Bellota-BoldItalic.ttf", FontWeight.Bold, FontStyle.Italic),
-    Font("font/Bellota/Bellota-Light.ttf", FontWeight.Light, FontStyle.Normal),
-    Font("font/Bellota/Bellota-LightItalic.ttf", FontWeight.Light, FontStyle.Italic),
+    font("Bellota", "font/Bellota/Bellota-Regular.ttf", FontWeight.Normal, FontStyle.Normal),
+    font("Bellota", "font/Bellota/Bellota-Italic.ttf", FontWeight.Normal, FontStyle.Italic),
+    font("Bellota", "font/Bellota/Bellota-Bold.ttf", FontWeight.Bold, FontStyle.Normal),
+    font("Bellota", "font/Bellota/Bellota-BoldItalic.ttf", FontWeight.Bold, FontStyle.Italic),
+    font("Bellota", "font/Bellota/Bellota-Light.ttf", FontWeight.Light, FontStyle.Normal),
+    font("Bellota", "font/Bellota/Bellota-LightItalic.ttf", FontWeight.Light, FontStyle.Italic),
 )
 
 private val bellotaText = FontFamily(
-    Font("font/Bellota_Text/BellotaText-Regular.ttf", FontWeight.Normal, FontStyle.Normal),
-    Font("font/Bellota_Text/BellotaText-Italic.ttf", FontWeight.Normal, FontStyle.Italic),
-    Font("font/Bellota_Text/BellotaText-Bold.ttf", FontWeight.Bold, FontStyle.Normal),
-    Font("font/Bellota_Text/BellotaText-BoldItalic.ttf", FontWeight.Bold, FontStyle.Italic),
-    Font("font/Bellota_Text/BellotaText-Light.ttf", FontWeight.Light, FontStyle.Normal),
-    Font("font/Bellota_Text/BellotaText-LightItalic.ttf", FontWeight.Light, FontStyle.Italic),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-Regular.ttf", FontWeight.Normal, FontStyle.Normal),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-Italic.ttf", FontWeight.Normal, FontStyle.Italic),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-Bold.ttf", FontWeight.Bold, FontStyle.Normal),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-BoldItalic.ttf", FontWeight.Bold, FontStyle.Italic),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-Light.ttf", FontWeight.Light, FontStyle.Normal),
+    font("Bellota Text", "font/Bellota_Text/BellotaText-LightItalic.ttf", FontWeight.Light, FontStyle.Italic),
 )
 
 data class SakuTypography(

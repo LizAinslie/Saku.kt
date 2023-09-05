@@ -22,9 +22,13 @@ kotlin {
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "shared"
-            isStatic = true
+        iosTarget.apply {
+            binaries {
+                framework {
+                    baseName = "shared"
+                    isStatic = true
+                }
+            }
         }
     }
 
@@ -104,3 +108,4 @@ android {
         jvmToolchain(11)
     }
 }
+
