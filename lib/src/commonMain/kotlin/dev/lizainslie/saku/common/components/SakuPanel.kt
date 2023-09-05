@@ -1,6 +1,7 @@
 package dev.lizainslie.saku.common.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
@@ -35,6 +36,7 @@ fun SakuPanel(
     corner: Dp = 5.dp,
     background: Color = SakuTheme.colors.background,
     foreground: Color = SakuTheme.colors.foreground,
+    border: Color = Color.Unspecified,
     padding: PaddingValues = PaddingValues(),
     corners: Corners = Corners.Both,
     extrude: Extrude = Extrude.None,
@@ -55,7 +57,10 @@ fun SakuPanel(
                     shape = panelShape,
                     ambientColor = background,
                     spotColor = background,
-                ),
+                ).let {
+                    if (border != Color.Unspecified) it.border(1.dp, border, panelShape)
+                    else it
+                },
             content = content
         )
     }
