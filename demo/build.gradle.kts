@@ -19,6 +19,7 @@ kotlin {
         jvmToolchain(11)
         withJava()
     }
+
     sourceSets {
         val jvmMain by getting {
             dependencies {
@@ -27,7 +28,6 @@ kotlin {
                 implementation(project(":lib"))
             }
         }
-        val jvmTest by getting
     }
 }
 
