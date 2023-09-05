@@ -2,8 +2,13 @@ package dev.lizainslie.saku.common.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.hoverable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
@@ -47,6 +52,7 @@ fun SakuButton(
     enabled: Boolean = true,
     background: Color = SakuTheme.colors.primary,
     foreground: Color = colorDark,
+    hoverBackground: Color = SakuTheme.colors.primary, // todo
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners.Both,
@@ -55,14 +61,21 @@ fun SakuButton(
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
 ) {
+
+
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
+    val backgroundColor = if (isHovered) hoverBackground else background
+
     ProvideTextStyle(SakuTheme.typography.button.copy(foreground)) {
         Row(
             modifier = modifier
                 .semantics { role = Role.Button }
                 .clickable(enabled, onClick = onClick)
+                .hoverable(interactionSource, enabled)
                 .padding(padding)
                 .background(
-                    background,
+                    backgroundColor,
                     CornerBoxShape(padding, corner, corners, extrude)
                 ),
             horizontalArrangement = horizontalArrangement,
@@ -103,6 +116,7 @@ fun SakuButton(
         enabled,
         theme.background,
         theme.foreground,
+        theme.background, // todo
         corner,
         padding,
         corners,
