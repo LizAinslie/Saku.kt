@@ -14,13 +14,13 @@ import dev.lizainslie.saku.common.components.SakuButton
 import dev.lizainslie.saku.common.components.SakuPanel
 import dev.lizainslie.saku.common.theme.colorDark
 import dev.lizainslie.saku.common.theme.colorLight
-import dev.lizainslie.saku.common.theme.colorMutedPurple
-import dev.lizainslie.saku.common.theme.colorPink
+import dev.lizainslie.saku.common.theme.colorPurple200
+import dev.lizainslie.saku.common.theme.colorPink100
 import dev.lizainslie.saku.common.util.Corners
 
 @Composable
 fun SakuMenu(
-    border: Color = colorPink,
+    border: Color = colorPink100,
     corner: Dp = 10.dp,
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -47,12 +47,12 @@ fun SakuMenuItem(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
-    val color = if (isHovered) colorMutedPurple else colorDark
+    val color = if (isHovered) colorPurple200 else colorDark
 
     SakuButton(
         background = color,
         foreground = colorLight,
-        hoverBackground = colorMutedPurple,
+        hoverBackground = colorPurple200,
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,

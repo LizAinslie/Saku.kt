@@ -52,7 +52,8 @@ fun SakuButton(
     enabled: Boolean = true,
     background: Color = SakuTheme.colors.primary,
     foreground: Color = colorDark,
-    hoverBackground: Color = SakuTheme.colors.primary, // todo
+    hoverBackground: Color = background,
+    hoverForeground: Color = foreground,
     corner: Dp = 5.dp,
     padding: PaddingValues = PaddingValues(8.dp, 4.dp),
     corners: Corners = Corners.Both,
@@ -66,8 +67,9 @@ fun SakuButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
     val backgroundColor = if (isHovered) hoverBackground else background
+    val foregroundColor = if (isHovered) hoverForeground else foreground
 
-    ProvideTextStyle(SakuTheme.typography.button.copy(foreground)) {
+    ProvideTextStyle(SakuTheme.typography.button.copy(foregroundColor)) {
         Row(
             modifier = modifier
                 .semantics { role = Role.Button }
@@ -87,12 +89,14 @@ fun SakuButton(
 
 data class SakuButtonTheme(
     val background: Color,
-    val foreground: Color
+    val foreground: Color,
+    val hoverBackground: Color = background,
+    val hoverForeground: Color = foreground
 ) {
     companion object {
-        val Primary = SakuButtonTheme(colorPink, colorDark)
-        val Secondary = SakuButtonTheme(colorMutedPurple, colorLight)
-        val Danger = SakuButtonTheme(colorRedBackground, colorLight)
+        val Primary = SakuButtonTheme(colorPink100, colorDark, colorPink110)
+        val Secondary = SakuButtonTheme(colorPurple200, colorLight, colorPurple210)
+        val Danger = SakuButtonTheme(colorRed130, colorLight, colorRed140)
     }
 }
 
@@ -116,7 +120,8 @@ fun SakuButton(
         enabled,
         theme.background,
         theme.foreground,
-        theme.background, // todo
+        theme.hoverBackground,
+        theme.hoverForeground,
         corner,
         padding,
         corners,

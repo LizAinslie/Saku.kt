@@ -7,11 +7,11 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 class SakuColors(
-    primary: Color = colorPink,
-    secondary: Color = colorMutedPurple,
+    primary: Color = colorPink100,
+    secondary: Color = colorPurple200,
     background: Color = colorDark,
     foreground: Color = colorLight,
-    danger: Color = colorRedBackground
+    danger: Color = colorRed130
 ) {
     var primary by mutableStateOf(primary)
         private set
@@ -44,22 +44,25 @@ class SakuColors(
 ////////// BASE COLORS /////////
 
 // Primary pink
-val colorPink = Color(0xffb464df)
+val colorPink100 = Color(0xffb464df)
+val colorPink110 = Color(0xffad56dc)
 // Blackest purple
-val colorDark = Color(0xff180029) // Color(0xff06000a)
+val colorDark = Color(0xff180029)
 // Lightest purple - close to white
 val colorLight = Color(0xffc9c4e1)
 // Dark secondary purple
-val colorMutedPurple = Color(0xff3a1d5d)
+val colorPurple200 = Color(0xff3a1d5d)
+val colorPurple210 = Color(0xff30184e)
 // Red
-val colorRedBackground = Color(0xffb94860)
+val colorRed130 = Color(0xffb94860)
+val colorRed140 = Color(0xffb1435b)
 
 fun colors(
-    primary: Color = colorPink,
-    secondary: Color = colorMutedPurple,
+    primary: Color = colorPink100,
+    secondary: Color = colorPurple200,
     background: Color = colorDark,
     foreground: Color = colorLight,
-    danger: Color = colorRedBackground
+    danger: Color = colorRed130
 ) = SakuColors(
     primary, secondary, background, foreground, danger
 )
