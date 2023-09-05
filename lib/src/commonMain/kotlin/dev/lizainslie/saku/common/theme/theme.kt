@@ -31,7 +31,6 @@ object SakuTheme {
         get() = LocalDimensions.current
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun SakuTheme(
     colors: SakuColors = SakuTheme.colors,
@@ -47,9 +46,6 @@ fun SakuTheme(
         LocalDimensions provides dimensions,
         LocalTypography provides typography
     ) {
-        Box(modifier = Modifier.fillMaxSize().paint(
-            painterResource("/img/background.jpg"),
-            contentScale = ContentScale.Crop,
-        )) { content() }
+        content()
     }
 }
