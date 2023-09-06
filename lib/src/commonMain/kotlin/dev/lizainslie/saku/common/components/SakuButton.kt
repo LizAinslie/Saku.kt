@@ -1,6 +1,7 @@
 package dev.lizainslie.saku.common.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -59,49 +60,67 @@ fun SakuButton(
     foreground: Color = colorDark,
     hoverBackground: Color = background,
     hoverForeground: Color = foreground,
-    corner: Dp = 5.dp,
-    padding: PaddingValues = PaddingValues(8.dp, 4.dp),
-    corners: Corners = Corners.Both,
-    extrude: Extrude = Extrude.None,
+    border: Color = Color.Unspecified,
+    corner: Dp = LocalCornerSize.current,
+    padding: PaddingValues = SakuButton.DefaultPadding,
+    corners: Corners = LocalCorners.current,
+    extrude: Extrude = LocalExtrudeOpts.current,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
 ) {
-
-
+    val buttonShape = CornerBoxShape(padding, corner, corners, extrude)
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
     val backgroundColor = if (isHovered) hoverBackground else background
     val foregroundColor = if (isHovered) hoverForeground else foreground
 
     ProvideTextStyle(SakuTheme.typography.button.copy(foregroundColor)) {
-        Row(
-            modifier = modifier
-                .semantics { role = Role.Button }
-                .clickable(enabled, onClick = onClick)
-                .hoverable(interactionSource, enabled)
-                .padding(padding)
-                .background(
-                    backgroundColor,
-                    CornerBoxShape(padding, corner, corners, extrude)
-                ),
-            horizontalArrangement = horizontalArrangement,
-            verticalAlignment = verticalAlignment,
-            content = content
-        )
+        ProvideIconColor(foregroundColor) {
+            Row(
+                modifier = modifier
+                    .semantics { role = Role.Button }
+                    .clickable(enabled, onClick = onClick)
+                    .hoverable(interactionSource, enabled)
+                    .padding(padding)
+                    .background(
+                        backgroundColor,
+                        buttonShape,
+                    )
+                    .let {
+                        if (border != Color.Unspecified) it.border(1.dp, border, buttonShape)
+                        else it
+                    },
+                horizontalArrangement = horizontalArrangement,
+                verticalAlignment = verticalAlignment,
+                content = content
+            )
+        }
     }
+}
+
+object SakuButton {
+    val IconPadding = PaddingValues(5.dp)
+    val DefaultPadding = PaddingValues(15.dp, 5.dp)
 }
 
 data class SakuButtonTheme(
     val background: Color,
     val foreground: Color,
-    val hoverBackground: Color = background,
-    val hoverForeground: Color = foreground
+    val hoverBackground: Color,
+    val hoverForeground: Color = foreground,
+    val border: Color = Color.Unspecified,
 ) {
     companion object {
         val Primary = SakuButtonTheme(colorPink100, colorDark, colorPink110)
-        val Secondary = SakuButtonTheme(colorPurple200, colorLight, colorPurple210)
+        val PrimaryTonal = SakuButtonTheme(colorPink200.copy(alpha = 0.4f), colorPink100, colorPink200.copy(alpha = 0.8f))
+
+        // by default, secondary is a muted, tonal dark purple
+        val Secondary = SakuButtonTheme(colorPurple200.copy(alpha = 0.4f), colorLight, colorPurple200.copy(alpha = 0.8f))
+
         val Danger = SakuButtonTheme(colorRed130, colorLight, colorRed140)
+        val DangerTonal = SakuButtonTheme(colorRed200.copy(alpha = 0.2f), colorRed130, colorRed200.copy(alpha = 0.6f))
+
     }
 }
 
@@ -111,10 +130,10 @@ fun SakuButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     theme: SakuButtonTheme = SakuButtonTheme.Primary,
-    corner: Dp = 5.dp,
-    padding: PaddingValues = PaddingValues(8.dp, 4.dp),
-    corners: Corners = Corners.Both,
-    extrude: Extrude = Extrude.None,
+    corner: Dp = LocalCornerSize.current,
+    padding: PaddingValues = SakuButton.DefaultPadding,
+    corners: Corners = LocalCorners.current,
+    extrude: Extrude = LocalExtrudeOpts.current,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.() -> Unit
@@ -127,6 +146,7 @@ fun SakuButton(
         theme.foreground,
         theme.hoverBackground,
         theme.hoverForeground,
+        theme.border,
         corner,
         padding,
         corners,

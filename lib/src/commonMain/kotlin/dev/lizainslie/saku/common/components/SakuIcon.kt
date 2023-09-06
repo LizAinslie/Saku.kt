@@ -2,9 +2,7 @@ package dev.lizainslie.saku.common.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.geometry.Size
@@ -21,6 +19,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -29,7 +28,7 @@ fun SakuIcon(
     imageVector: ImageVector,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified
+    color: Color = LocalIconColor.current
 ) {
     SakuIcon(
         painter = rememberVectorPainter(imageVector),
@@ -45,7 +44,7 @@ fun SakuIcon(
     bitmap: ImageBitmap,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified
+    color: Color = LocalIconColor.current
 ) {
     val painter = remember(bitmap) { BitmapPainter(bitmap) }
     SakuIcon(
@@ -61,7 +60,7 @@ fun SakuIcon(
     painter: Painter,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified
+    color: Color = LocalIconColor.current
 ) {
     val colorFilter = if (color == Color.Unspecified) null else ColorFilter.tint(color)
     val semantics = if (contentDescription != null) {
@@ -91,6 +90,22 @@ private fun Modifier.defaultSizeFor(painter: Painter) =
             Modifier
         }
     )
+
+
+internal val LocalIconColor = compositionLocalOf(structuralEqualityPolicy()) { Color.Unspecified }
+
+/**
+ * A helper context used to pass text styles to child [dev.lizainslie.saku.common.components.SakuIcon] components
+ *
+ * @param color The icon color to apply to children
+ * @param content Child content block
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
+@Composable
+fun ProvideIconColor(color: Color, content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalIconColor provides color, content = content)
+}
 
 private fun Size.isInfinite() = width.isInfinite() && height.isInfinite()
 

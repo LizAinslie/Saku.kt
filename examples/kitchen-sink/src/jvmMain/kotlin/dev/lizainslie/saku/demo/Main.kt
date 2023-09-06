@@ -24,6 +24,7 @@ import dev.lizainslie.saku.common.components.menu.SakuMenu
 import dev.lizainslie.saku.common.components.menu.SakuMenuItem
 import dev.lizainslie.saku.common.theme.colorDark
 import dev.lizainslie.saku.common.theme.colorLight
+import dev.lizainslie.saku.common.theme.colorRed130
 import dev.lizainslie.saku.common.util.Extrude
 
 @Composable
@@ -49,87 +50,51 @@ fun App() {
                             }
                         }
                     }) {
-                        SakuPanel(
+                        SakuImageCard(
                             corner = 12.5.dp,
-                            modifier = Modifier.width(300.dp)
-                        ) {
-                            Column (modifier = Modifier.width(IntrinsicSize.Max)) {
+                            modifier = Modifier.width(300.dp),
+                            image = {
                                 SakuImage(
                                     painter = painterResource("img/lizzy.png"),
                                     contentScale = ContentScale.FillWidth,
                                     corners = Corners.TopRight,
-                                    extrude = Extrude.BottomRight,
-                                    corner = 12.5.dp,
+                                )
+                            },
+                        ) {
+                            Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                                SakuText(
+                                    "Liz Ainslie",
+                                    style = SakuTheme.typography.headingH2.copy(
+                                        fontSize = 24.sp,
+                                        color = SakuTheme.colors.foreground
+                                    ),
+                                    modifier = Modifier.padding(),
+                                    lineHeight = 16.sp,
+                                    overflow = TextOverflow.Ellipsis
                                 )
 
-                                Column(
-                                    modifier = Modifier.padding(10.dp),
-                                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                                ) {
-                                    SakuText(
-                                        "Liz Ainslie",
-                                        style = SakuTheme.typography.headingH2.copy(
-                                            fontSize = 24.sp,
-                                            color = SakuTheme.colors.foreground
-                                        ),
-                                        modifier = Modifier.padding(),
-                                        lineHeight = 16.sp,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-
-                                    SakuText(
-                                        """
+                                SakuText(
+                                    """
                                     Meow mrrp nya~ meow meow meow mrrrrrrrrp
                                 """.trimIndent(),
-                                        overflow = TextOverflow.Ellipsis,
-                                        maxLines = 4,
-                                    )
+                                    overflow = TextOverflow.Ellipsis,
+                                    maxLines = 4,
+                                )
 
-                                    Row(
-                                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                                    modifier = Modifier.fillMaxWidth(),
+                                ) {
+                                    SakuButton(
                                         modifier = Modifier.fillMaxWidth(),
+                                        theme = SakuButtonTheme.PrimaryTonal,
                                     ) {
-                                        SakuButton(
-                                            modifier = Modifier.fillMaxWidth(1f / 3),
-                                            corners = Corners.BottomLeft
-                                        ) {
-                                            SakuIcon(
-                                                imageVector = FeatherIcons.UserPlus,
-                                                "follow icon",
-                                                color = colorDark,
-                                                modifier = Modifier.size(16.dp),
-                                            )
-                                            SakuText("Follow")
-                                        }
-
-                                        SakuButton(
-                                            modifier = Modifier.fillMaxWidth(1f / 2),
-                                            corners = Corners.None,
-                                            theme = SakuButtonTheme.Secondary,
-                                        ) {
-                                            SakuIcon(
-                                                imageVector = FeatherIcons.MessageCircle,
-                                                "chat icon",
-                                                color = colorLight,
-                                                modifier = Modifier.size(16.dp),
-                                            )
-                                            SakuText("Chat")
-                                        }
-
-
-                                        SakuButton(
-                                            modifier = Modifier.fillMaxWidth(),
-                                            corners = Corners.TopRight,
-                                            theme = SakuButtonTheme.Danger,
-                                        ) {
-                                            SakuIcon(
-                                                imageVector = FeatherIcons.UserX,
-                                                "block icon",
-                                                color = colorLight,
-                                                modifier = Modifier.size(16.dp),
-                                            )
-                                            SakuText("Block")
-                                        }
+                                        SakuIcon(
+                                            imageVector = FeatherIcons.UserPlus,
+                                            "follow icon",
+                                            modifier = Modifier.size(16.dp),
+                                        )
+                                        SakuText("Follow")
                                     }
                                 }
                             }

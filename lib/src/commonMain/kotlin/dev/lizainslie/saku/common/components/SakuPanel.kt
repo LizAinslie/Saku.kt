@@ -12,6 +12,9 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.lizainslie.saku.common.theme.LocalCornerSize
+import dev.lizainslie.saku.common.theme.LocalCorners
+import dev.lizainslie.saku.common.theme.LocalExtrudeOpts
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
@@ -33,35 +36,37 @@ import dev.lizainslie.saku.common.util.Extrude
 @Composable
 fun SakuPanel(
     modifier: Modifier = Modifier,
-    corner: Dp = 5.dp,
+    corner: Dp = LocalCornerSize.current,
     background: Color = SakuTheme.colors.background,
     foreground: Color = SakuTheme.colors.foreground,
     border: Color = Color.Unspecified,
     padding: PaddingValues = PaddingValues(),
-    corners: Corners = Corners.Both,
-    extrude: Extrude = Extrude.None,
+    corners: Corners = LocalCorners.current,
+    extrude: Extrude = LocalExtrudeOpts.current,
     content: @Composable BoxScope.() -> Unit,
 ) {
     val panelShape = CornerBoxShape(padding, corner, corners, extrude)
 
     ProvideTextStyle(SakuTheme.typography.body.copy(foreground)) {
-        Box(
-            modifier = modifier
-                .padding(padding)
-                .background(
-                    color = background,
-                    shape = panelShape
-                )
-                .shadow(
-                    elevation = 10.dp,
-                    shape = panelShape,
-                    ambientColor = background,
-                    spotColor = background,
-                ).let {
-                    if (border != Color.Unspecified) it.border(1.dp, border, panelShape)
-                    else it
-                },
-            content = content
-        )
+        ProvideIconColor(foreground) {
+            Box(
+                modifier = modifier
+                    .padding(padding)
+                    .background(
+                        color = background,
+                        shape = panelShape
+                    )
+                    .shadow(
+                        elevation = 10.dp,
+                        shape = panelShape,
+                        ambientColor = background,
+                        spotColor = background,
+                    ).let {
+                        if (border != Color.Unspecified) it.border(1.dp, border, panelShape)
+                        else it
+                    },
+                content = content
+            )
+        }
     }
 }

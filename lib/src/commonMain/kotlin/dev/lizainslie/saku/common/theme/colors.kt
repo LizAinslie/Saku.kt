@@ -46,6 +46,7 @@ class SakuColors(
 // Primary pink
 val colorPink100 = Color(0xffb464df)
 val colorPink110 = Color(0xffad56dc)
+val colorPink200 = Color(0xff491566)
 // Blackest purple
 val colorDark = Color(0xff180029)
 // Lightest purple - close to white
@@ -56,6 +57,7 @@ val colorPurple210 = Color(0xff30184e)
 // Red
 val colorRed130 = Color(0xffb94860)
 val colorRed140 = Color(0xffb1435b)
+val colorRed200 = Color(0xff59222e)
 
 fun colors(
     primary: Color = colorPink100,
