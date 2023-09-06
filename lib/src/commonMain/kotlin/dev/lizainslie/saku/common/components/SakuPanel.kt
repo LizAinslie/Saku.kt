@@ -57,7 +57,7 @@ fun SakuPanel(
                         shape = panelShape
                     )
                     .shadow(
-                        elevation = 10.dp,
+                        elevation = 16.dp,
                         shape = panelShape,
                         ambientColor = background,
                         spotColor = background,

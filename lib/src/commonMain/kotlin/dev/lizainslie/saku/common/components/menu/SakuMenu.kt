@@ -16,16 +16,19 @@ import dev.lizainslie.saku.common.util.Corners
 @Composable
 fun SakuMenu(
     border: Color = colorPink100,
-    corner: Dp = 10.dp,
+    corner: Dp = SakuTheme.dimensions.cornerMedium,
+    padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
     content: @Composable ColumnScope.() -> Unit
 ) {
     SakuPanel(
         border = border,
         corner = corner,
+        padding = padding,
     ) {
-        ProvideCornerSize(corner) {
-            Column(content = content)
-        }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall),
+            content = content
+        )
     }
 }
 
@@ -37,7 +40,7 @@ fun SakuMenuItem(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     corner: Dp = LocalCornerSize.current,
-    padding: PaddingValues = SakuButton.DefaultPadding,
+    padding: PaddingValues = SakuTheme.dimensions.buttonPaddingSmall,
     corners: Corners = Corners.Both,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,

@@ -62,7 +62,7 @@ fun SakuButton(
     hoverForeground: Color = foreground,
     border: Color = Color.Unspecified,
     corner: Dp = LocalCornerSize.current,
-    padding: PaddingValues = SakuButton.DefaultPadding,
+    padding: PaddingValues = SakuTheme.dimensions.buttonPaddingSmall,
     corners: Corners = LocalCorners.current,
     extrude: Extrude = LocalExtrudeOpts.current,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
@@ -99,11 +99,6 @@ fun SakuButton(
     }
 }
 
-object SakuButton {
-    val IconPadding = PaddingValues(5.dp)
-    val DefaultPadding = PaddingValues(15.dp, 5.dp)
-}
-
 data class SakuButtonTheme(
     val background: Color,
     val foreground: Color,
@@ -118,9 +113,17 @@ data class SakuButtonTheme(
         // by default, secondary is a muted, tonal dark purple
         val Secondary = SakuButtonTheme(colorPurple200.copy(alpha = 0.4f), colorLight, colorPurple200.copy(alpha = 0.8f))
 
-        val Danger = SakuButtonTheme(colorRed130, colorLight, colorRed140)
-        val DangerTonal = SakuButtonTheme(colorRed200.copy(alpha = 0.2f), colorRed130, colorRed200.copy(alpha = 0.6f))
+        val Red = SakuButtonTheme(colorRed130, colorLight, colorRed140)
+        val RedTonal = SakuButtonTheme(colorRed200.copy(alpha = 0.3f), colorRed130, colorRed200.copy(alpha = 0.6f))
 
+        val Yellow = SakuButtonTheme(colorYellow90, colorDark, colorYellow100)
+        val YellowTonal = SakuButtonTheme(colorYellow190.copy(alpha = 0.3f), colorYellow100, colorYellow190.copy(alpha = 0.6f))
+
+        val Green = SakuButtonTheme(colorGreen120, colorDark, colorGreen130)
+        val GreenTonal = SakuButtonTheme(colorGreen200.copy(alpha = 0.3f), colorGreen120, colorGreen200.copy(alpha = 0.6f))
+
+        val Blue = SakuButtonTheme(colorBlue100, colorDark, colorBlue110)
+        val BlueTonal = SakuButtonTheme(colorBlue200.copy(alpha = 0.3f), colorBlue100, colorBlue200.copy(alpha = 0.6f))
     }
 }
 
@@ -130,8 +133,8 @@ fun SakuButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     theme: SakuButtonTheme = SakuButtonTheme.Primary,
-    corner: Dp = LocalCornerSize.current,
-    padding: PaddingValues = SakuButton.DefaultPadding,
+    corner: Dp = SakuTheme.dimensions.cornerSmall,
+    padding: PaddingValues = SakuTheme.dimensions.buttonPaddingSmall,
     corners: Corners = LocalCorners.current,
     extrude: Extrude = LocalExtrudeOpts.current,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),

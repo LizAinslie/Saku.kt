@@ -13,10 +13,10 @@ import dev.lizainslie.saku.common.util.Extrude
 @Composable
 fun SakuImageCard(
     modifier: Modifier = Modifier,
-    padding: PaddingValues = PaddingValues(10.dp), // body only
-    corner: Dp = 12.5.dp,
-    corners: Corners = LocalCorners.current,
-    extrude: Extrude = LocalExtrudeOpts.current,
+    padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium), // body only
+    corner: Dp = SakuTheme.dimensions.cornerMedium,
+    corners: Corners = Corners.Both,
+    extrude: Extrude = Extrude.None,
     image: @Composable () -> Unit = {},
     content: @Composable BoxScope.() -> Unit
 ) {

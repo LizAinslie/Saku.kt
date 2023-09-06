@@ -5,11 +5,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.common.util.Extrude
 
-val LocalCornerSize = compositionLocalOf(structuralEqualityPolicy()) { 5.dp }
+val LocalCornerSize = compositionLocalOf(structuralEqualityPolicy()) { SakuDimensions().cornerSmall }
 
 @Composable
 fun ProvideCornerSize(value: Dp, content: @Composable () -> Unit) {
