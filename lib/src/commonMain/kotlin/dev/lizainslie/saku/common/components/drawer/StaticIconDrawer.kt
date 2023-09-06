@@ -47,7 +47,10 @@ object StaticIconDrawer {
     ) {
         companion object {
             val Primary = SakuButtonTheme.PrimaryTonal.toClickableItemTheme(colorLight)
-            val Danger = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
+            val Red = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
+            val Yellow = SakuButtonTheme.YellowTonal.toClickableItemTheme(colorDark)
+            val Green = SakuButtonTheme.GreenTonal.toClickableItemTheme(colorDark)
+            val Blue = SakuButtonTheme.BlueTonal.toClickableItemTheme(colorDark)
         }
     }
 
