@@ -24,7 +24,10 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+
                 implementation("br.com.devsrsouza.compose.icons:feather:1.1.0")
+                implementation("ro.dragossusi:navigation:0.0.2")
+
                 implementation(project(":lib"))
             }
         }

@@ -21,14 +21,17 @@ import dev.lizainslie.saku.common.components.drawer.StaticIconDrawer
 import dev.lizainslie.saku.common.components.menu.SakuContextMenuWrapper
 import dev.lizainslie.saku.common.components.menu.SakuMenu
 import dev.lizainslie.saku.common.components.menu.SakuMenuItem
-import dev.lizainslie.saku.common.theme.colorDark
-import dev.lizainslie.saku.common.theme.colorLight
-import dev.lizainslie.saku.common.theme.colorRed130
-import dev.lizainslie.saku.common.util.Extrude
+import dev.lizainslie.saku.demo.screens.EditorScreen
+import dev.lizainslie.saku.demo.screens.HomeScreen
+import ro.dragossusi.navigation.NavHost
+import ro.dragossusi.navigation.rememberNavController
+import ro.dragossusi.navigation.route
 
 @Composable
 @Preview
 fun App() {
+    val navController = rememberNavController()
+
     SakuTheme {
         SakuScaffold {
             Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.Bottom) {
@@ -36,22 +39,26 @@ fun App() {
                     corners = Corners.TopRight
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingMedium, Alignment.Bottom),
+                        verticalArrangement = Arrangement.spacedBy(
+                            SakuTheme.dimensions.basePaddingMedium,
+                            Alignment.Bottom
+                        ),
                     ) {
                         StaticIconDrawer.ClickableItem(
-                            theme = StaticIconDrawer.ClickableItemTheme.Danger,
-                            onClick = {},
+                            theme = StaticIconDrawer.ClickableItemTheme.Blue,
+                            onClick = { navController.navigate("editor") },
+                            active = navController.navBackstackEntry.value?.route == "editor",
                         ) {
                             SakuIcon(
-                                imageVector = FeatherIcons.Trash,
+                                imageVector = FeatherIcons.PenTool,
                                 contentDescription = null,
                                 modifier = Modifier.size(16.dp),
                             )
                         }
 
                         StaticIconDrawer.ClickableItem(
-                            onClick = {},
-                            active = true,
+                            onClick = {navController.navigate("home")},
+                            active = navController.navBackstackEntry.value?.route == "home",
                         ) {
                             SakuIcon(
                                 imageVector = FeatherIcons.Home,
@@ -62,210 +69,15 @@ fun App() {
                     }
                 }
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    SakuText("Saku.kt Demo", style = SakuTheme.typography.headingH1)
+                NavHost(
+                    navController,
+                    startRoute = "home") {
+                    composable("home") {
+                        HomeScreen()
+                    }
 
-                    Row(horizontalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingMedium * 2)) {
-                        SakuContextMenuWrapper(menu = {
-                            SakuMenu {
-                                SakuMenuItem(onClick = {}, corners = Corners.TopRight) {
-                                    SakuText("Menu Item 1")
-                                }
-                                SakuMenuItem(onClick = {}, corners = Corners.BottomLeft) {
-                                    SakuText("Menu Item 1")
-                                }
-                            }
-                        }) {
-                            SakuImageCard(
-                                modifier = Modifier.width(200.dp),
-                                image = {
-                                    SakuImage(
-                                        painter = painterResource("img/lizzy.png"),
-                                        contentScale = ContentScale.FillWidth,
-                                        corners = Corners.TopRight,
-                                    )
-                                },
-                            ) {
-                                Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                                    SakuText(
-                                        "Liz Ainslie",
-                                        style = SakuTheme.typography.headingH2.copy(
-                                            fontSize = 24.sp,
-                                            color = SakuTheme.colors.foreground
-                                        ),
-                                        modifier = Modifier.padding(),
-                                        lineHeight = 16.sp,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-
-                                    SakuText(
-                                        """
-                                            Meow mrrp nya~ meow meow meow mrrrrrrrrp
-                                        """.trimIndent(),
-                                        overflow = TextOverflow.Ellipsis,
-                                        maxLines = 4,
-                                    )
-                                }
-                            }
-                        }
-
-                        SakuPanel(
-                            modifier = Modifier.width(440.dp),
-                            padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
-                            corner = SakuTheme.dimensions.cornerMedium,
-                        ) {
-                            Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                                SakuText("Button Colors",
-                                    style = SakuTheme.typography.headingH2.copy(
-                                        fontSize = 24.sp,
-                                        color = SakuTheme.colors.foreground
-                                    ),
-                                    modifier = Modifier.padding(),
-                                    lineHeight = 16.sp,
-                                    overflow = TextOverflow.Ellipsis)
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                                    modifier = Modifier.fillMaxWidth(),
-                                ) {
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 2),
-                                        theme = SakuButtonTheme.Primary,
-                                        corners = Corners.BottomLeft,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.Box,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Pink")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 1),
-                                        theme = SakuButtonTheme.PrimaryTonal,
-                                        corners = Corners.TopRight,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.Box,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Pink Tonal")
-                                    }
-                                }
-
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                                    modifier = Modifier.fillMaxWidth(),
-                                ) {
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 4),
-                                        theme = SakuButtonTheme.Blue,
-                                        corners = Corners.BottomLeft,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.Info,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Info")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 3),
-                                        theme = SakuButtonTheme.Green,
-                                        corners = Corners.None,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.CheckCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Success")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 2),
-                                        theme = SakuButtonTheme.Yellow,
-                                        corners = Corners.None,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.AlertCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Warning")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        theme = SakuButtonTheme.Red,
-                                        corners = Corners.TopRight,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.XCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Error")
-                                    }
-                                }
-
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                                    modifier = Modifier.fillMaxWidth(),
-                                ) {
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 4),
-                                        theme = SakuButtonTheme.BlueTonal,
-                                        corners = Corners.BottomLeft,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.Info,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Info")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 3),
-                                        theme = SakuButtonTheme.GreenTonal,
-                                        corners = Corners.None,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.CheckCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Success")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(1f / 2),
-                                        theme = SakuButtonTheme.YellowTonal,
-                                        corners = Corners.None,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.AlertCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Warning")
-                                    }
-                                    SakuButton(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        theme = SakuButtonTheme.RedTonal,
-                                        corners = Corners.TopRight,
-                                    ) {
-                                        SakuIcon(
-                                            imageVector = FeatherIcons.XCircle,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                        )
-                                        SakuText("Error")
-                                    }
-                                }
-                            }
-                        }
+                    composable("editor") {
+                        EditorScreen()
                     }
                 }
             }
