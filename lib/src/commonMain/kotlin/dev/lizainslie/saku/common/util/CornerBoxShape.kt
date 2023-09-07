@@ -34,6 +34,21 @@ data class Extrude(
     }
 }
 
+/**
+ * A fairly versatile implementation of the required draw code for the stylistic
+ * shipped box shape featured in this library. [padding] should correspond to
+ * the padding modifier on the element to which this shape is applied. [corner]
+ * defines the size of corner cuts and extrusions. [corners] allows you to
+ * choose specific corners to apply the style. [extrude] tells the shape whether
+ * to add vertical decorative triangles. [insetExtrude] exists for elements like
+ * images, where the content needs to be clipped when extruding rather than
+ * adding to the total area. When using components that consider this behavior a
+ * default, such as [SakuImage][dev.lizainslie.saku.common.components.SakuImage]
+ * you must be mindful to adjust the parent layout to avoid leaving a large gap.
+ * This is demonstrated in [dev.lizainslie.saku.common.components.SakuImageCard]
+ *
+ * @author Elizabeth Hazel Ainslie
+ */
 class CornerBoxShape(
     private val padding: PaddingValues,
     private val corner: Dp = 5.dp,
