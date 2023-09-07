@@ -39,51 +39,99 @@ class CornerBoxShape(
     private val corner: Dp = 5.dp,
     private val corners: Corners = Corners.Both,
     private val extrude: Extrude = Extrude.None,
+    private val insetExtrude: Boolean = false,
 ) : Shape {
     override fun createOutline(size: Size, layoutDirection: LayoutDirection, density: Density) = with(density) {
         val extrudeOffsetBottom = if (extrude.bottomRight) corner else 0.dp
-        val extrudeOffsetTop = if (extrude.topLeft) corner else 0.dp
 
+
+        // this math gets harder to follow with every proverbial grain of sand this code inserts into my asshole
         val path = Path().apply {
-            moveTo(
-                0f - padding.calculateLeftPadding(layoutDirection).toPx(),
-                0f - padding.calculateTopPadding().toPx(),
-            )
-
             if (extrude.topLeft) {
-                lineTo(
-                    0f - padding.calculateLeftPadding(layoutDirection).toPx() + corner.toPx(),
-                    0f - padding.calculateTopPadding().toPx() + extrudeOffsetTop.toPx()
+                if (insetExtrude) {
+                    moveTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        0f - padding.calculateTopPadding().toPx(),
+                    )
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx() + corner.toPx(),
+                        0f - padding.calculateTopPadding().toPx() + corner.toPx()
+                    )
+                } else {
+                    moveTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        0f - padding.calculateTopPadding().toPx() - corner.toPx(),
+                    )
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx() + corner.toPx(),
+                        0f - padding.calculateTopPadding().toPx()
+                    )
+                }
+            } else {
+                moveTo(
+                    0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                    0f - padding.calculateTopPadding().toPx(),
                 )
             }
 
             if (corners.topRight) {
-                lineTo(
-                    (size.width + padding.calculateRightPadding(layoutDirection).toPx()) - corner.toPx(),
-                    0f - padding.calculateTopPadding().toPx() + extrudeOffsetTop.toPx()
-                )
+                if (insetExtrude && extrude.topLeft) {
+                    lineTo(
+                        (size.width + padding.calculateRightPadding(layoutDirection).toPx()) - corner.toPx(),
+                        0f - padding.calculateTopPadding().toPx() + corner.toPx()
+                    )
 
-                lineTo(
-                    size.width + padding.calculateRightPadding(layoutDirection).toPx(),
-                    corner.toPx() - padding.calculateTopPadding().toPx() + extrudeOffsetTop.toPx()
-                )
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx(),
+                        corner.toPx() - padding.calculateTopPadding().toPx() + corner.toPx()
+                    )
+                } else {
+                    lineTo(
+                        (size.width + padding.calculateRightPadding(layoutDirection).toPx()) - corner.toPx(),
+                        0f - padding.calculateTopPadding().toPx()
+                    )
+
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx(),
+                        corner.toPx() - padding.calculateTopPadding().toPx()
+                    )
+                }
             } else {
-                lineTo(
-                    (size.width + padding.calculateRightPadding(layoutDirection).toPx()),
-                    0f - padding.calculateTopPadding().toPx() + extrudeOffsetTop.toPx()
-                )
+                if (insetExtrude && extrude.topLeft) {
+                    lineTo(
+                        (size.width + padding.calculateRightPadding(layoutDirection).toPx()),
+                        0f - padding.calculateTopPadding().toPx() + corner.toPx()
+                    )
+                } else {
+                    lineTo(
+                        (size.width + padding.calculateRightPadding(layoutDirection).toPx()),
+                        0f - padding.calculateTopPadding().toPx()
+                    )
+                }
             }
 
             if (extrude.bottomRight) {
-                lineTo(
-                    size.width + padding.calculateRightPadding(layoutDirection).toPx(),
-                    size.height + padding.calculateBottomPadding().toPx()
-                )
+                if (insetExtrude) {
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx()
+                    )
 
-                lineTo(
-                    size.width + padding.calculateRightPadding(layoutDirection).toPx() - corner.toPx(),
-                    size.height + padding.calculateBottomPadding().toPx() - extrudeOffsetBottom.toPx()
-                )
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx() - corner.toPx(),
+                        size.height + padding.calculateBottomPadding().toPx() - corner.toPx()
+                    )
+                } else {
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx() + corner.toPx()
+                    )
+
+                    lineTo(
+                        size.width + padding.calculateRightPadding(layoutDirection).toPx() - corner.toPx(),
+                        size.height + padding.calculateBottomPadding().toPx()
+                    )
+                }
             } else {
                 lineTo(
                     size.width + padding.calculateRightPadding(layoutDirection).toPx(),
@@ -92,27 +140,60 @@ class CornerBoxShape(
             }
 
             if (corners.bottomLeft) {
-                lineTo(
-                    corner.toPx() - padding.calculateLeftPadding(layoutDirection).toPx(),
-                    size.height + padding.calculateBottomPadding().toPx() - extrudeOffsetBottom.toPx()
-                )
-                lineTo(
-                    0f - padding.calculateLeftPadding(layoutDirection).toPx(),
-                    (size.height + padding.calculateBottomPadding().toPx()) - corner.toPx() - extrudeOffsetBottom.toPx()
-                )
+                if (insetExtrude && extrude.bottomRight) {
+                    lineTo(
+                        corner.toPx() - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx() - corner.toPx()
+                    )
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        (size.height + padding.calculateBottomPadding()
+                            .toPx()) - corner.toPx() - corner.toPx()
+                    )
+                } else {
+                    lineTo(
+                        corner.toPx() - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx()
+                    )
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        (size.height + padding.calculateBottomPadding()
+                            .toPx()) - corner.toPx()
+                    )
+                }
+            } else {
+                if (insetExtrude && extrude.bottomRight) {
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx() - corner.toPx()
+                    )
+                } else {
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        size.height + padding.calculateBottomPadding().toPx()
+                    )
+                }
             }
 
-            else {
+
+            if (extrude.topLeft) {
+                if (insetExtrude) {
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        0f - padding.calculateTopPadding().toPx(),
+                    )
+                } else {
+                    lineTo(
+                        0f - padding.calculateLeftPadding(layoutDirection).toPx(),
+                        0f - padding.calculateTopPadding().toPx() - corner.toPx(),
+                    )
+                }
+            } else {
                 lineTo(
                     0f - padding.calculateLeftPadding(layoutDirection).toPx(),
-                    size.height + padding.calculateBottomPadding().toPx() - extrudeOffsetBottom.toPx()
+                    0f - padding.calculateTopPadding().toPx(),
                 )
             }
-
-            lineTo(
-                0f - padding.calculateLeftPadding(layoutDirection).toPx(),
-                0f - padding.calculateTopPadding().toPx()
-            )
 
             close()
         }

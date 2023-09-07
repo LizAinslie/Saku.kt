@@ -30,6 +30,6 @@ fun SakuImage(
         painter = painter,
         contentDescription = contentDescription,
         contentScale = contentScale,
-        modifier = modifier.clip(CornerBoxShape(PaddingValues(), corner, corners, extrude))
+        modifier = modifier.clip(CornerBoxShape(PaddingValues(), corner, corners, extrude, true))
     )
 }

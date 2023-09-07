@@ -18,6 +18,7 @@ import dev.lizainslie.saku.common.components.menu.SakuMenu
 import dev.lizainslie.saku.common.components.menu.SakuMenuItem
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
+import dev.lizainslie.saku.common.util.Extrude
 import dev.lizainslie.saku.demo.components.ExampleTextField
 
 @Composable
@@ -86,6 +87,7 @@ fun HomeScreen() {
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
                         corner = SakuTheme.dimensions.cornerMedium,
+                        extrude = Extrude.BottomRight,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
@@ -242,6 +244,7 @@ fun HomeScreen() {
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
                         corner = SakuTheme.dimensions.cornerMedium,
+                        extrude = Extrude.Both,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
@@ -364,6 +367,7 @@ fun HomeScreen() {
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
                         corner = SakuTheme.dimensions.cornerMedium,
+                        extrude = Extrude.TopLeft,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
