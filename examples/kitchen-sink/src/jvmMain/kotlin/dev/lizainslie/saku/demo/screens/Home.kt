@@ -18,6 +18,7 @@ import dev.lizainslie.saku.common.components.menu.SakuMenu
 import dev.lizainslie.saku.common.components.menu.SakuMenuItem
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
+import dev.lizainslie.saku.demo.components.ExampleTextField
 
 @Composable
 fun HomeScreen() {
@@ -29,14 +30,13 @@ fun HomeScreen() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.width(1600.dp)
         ) {
             SakuText(
                 "Saku.kt // Kitchen Sink",
                 style = SakuTheme.typography.headingH1.copy(fontSize = 72.sp, fontWeight = FontWeight.Bold)
             )
 
-            Row(horizontalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingMedium * 2)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingLarge)) {
                 SakuContextMenuWrapper(menu = {
                     SakuMenu {
                         SakuMenuItem(onClick = {}, corners = Corners.TopRight) {
@@ -86,6 +86,7 @@ fun HomeScreen() {
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
                         corner = SakuTheme.dimensions.cornerMedium,
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
                             SakuText(
@@ -237,9 +238,11 @@ fun HomeScreen() {
                             }
                         }
                     }
+
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
-                        corner = SakuTheme.dimensions.cornerMedium
+                        corner = SakuTheme.dimensions.cornerMedium,
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
                             SakuText(
@@ -353,6 +356,38 @@ fun HomeScreen() {
                                             )
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+
+                    SakuPanel(
+                        padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
+                        corner = SakuTheme.dimensions.cornerMedium,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
+                            SakuText(
+                                "Text Inputs",
+                                style = SakuTheme.typography.headingH2.copy(
+                                    fontSize = 24.sp,
+                                    color = SakuTheme.colors.foreground
+                                ),
+                                modifier = Modifier.padding(),
+                                lineHeight = 16.sp,
+                                overflow = TextOverflow.Ellipsis
+                            )
+
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(1.dp),
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                ExampleTextField(corners = Corners.BottomLeft)
+                                SakuButton(
+                                    theme = SakuButtonTheme.GreenTonal,
+                                    corners = Corners.TopRight,
+                                ) {
+                                    SakuText("Go")
                                 }
                             }
                         }
