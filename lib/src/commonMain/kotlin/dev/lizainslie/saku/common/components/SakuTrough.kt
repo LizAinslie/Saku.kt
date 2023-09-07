@@ -61,7 +61,14 @@ fun SakuTrough(
                 modifier = modifier.background(
                     troughColor,
                     troughShape
-                ),
+                ).let {
+                    when (direction) {
+                        TroughDirection.UP, TroughDirection.DOWN -> it
+                            .width(IntrinsicSize.Min)
+                        TroughDirection.LEFT, TroughDirection.RIGHT -> it
+                            .height(IntrinsicSize.Min)
+                    }
+                }
             ) {
                 Box(
                     modifier = Modifier
