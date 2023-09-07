@@ -82,7 +82,7 @@ fun HomeScreen() {
                 }
 
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingLarge)
+                    verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingMedium)
                 ) {
                     SakuPanel(
                         padding = PaddingValues(SakuTheme.dimensions.basePaddingMedium),

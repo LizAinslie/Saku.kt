@@ -55,7 +55,7 @@ fun SakuTextField(
         interactionSource = interactionSource,
         cursorBrush = SolidColor(foreground),
         textStyle = SakuTheme.typography.body.copy(color = foreground),
-        decorationBox = {innerTextField ->
+        decorationBox = { innerTextField ->
             Row(
                 modifier
                     .background(if (focused) focusBackground else background, inputShape)
