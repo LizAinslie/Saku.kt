@@ -50,7 +50,7 @@ data class SakuTypography(
     ),
     val button: TextStyle = TextStyle(
         fontFamily = bellotaText,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         color = colorDark,
     ),

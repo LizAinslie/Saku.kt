@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.lizainslie.saku.common.theme.LocalCornerSize
@@ -34,6 +35,7 @@ fun SakuTextField(
     background: Color = SakuTheme.colors.secondary,
     foreground: Color = SakuTheme.colors.foreground,
     focusBackground: Color = SakuTheme.colors.secondary,
+    placeholderColor: Color = SakuTheme.colors.foreground.copy(alpha = .8f),
     corner: Dp = LocalCornerSize.current,
     padding: PaddingValues = SakuTheme.dimensions.buttonPaddingSmall,
     corners: Corners = LocalCorners.current,
@@ -76,7 +78,7 @@ fun SakuTextField(
                     if (value.isEmpty()) {
                         SakuText(
                             placeholder,
-                            style = SakuTheme.typography.body.copy(foreground.copy(alpha = .8f))
+                            style = SakuTheme.typography.button.copy(placeholderColor)
                         )
                     }
                     innerTextField()
@@ -87,12 +89,13 @@ fun SakuTextField(
 }
 
 // tonal buttons -> other ui
-internal fun SakuButtonTheme.toTextFieldTheme() = SakuTextFieldTheme(this.background, this.foreground, this.hoverBackground)
+internal fun SakuButtonTheme.toTextFieldTheme() = SakuTextFieldTheme(this.background, this.hoverForeground, this.hoverBackground, this.foreground.copy(alpha = .8f))
 
 data class SakuTextFieldTheme(
     val background: Color,
     val foreground: Color,
     val focusBackground: Color,
+    val placeholderColor: Color,
 ) {
     companion object {
         val Primary = SakuButtonTheme.PrimaryTonal.toTextFieldTheme()
@@ -122,6 +125,7 @@ fun SakuTextField(
         theme.background,
         theme.foreground,
         theme.focusBackground,
+        theme.placeholderColor,
         corner,
         padding,
         corners,
