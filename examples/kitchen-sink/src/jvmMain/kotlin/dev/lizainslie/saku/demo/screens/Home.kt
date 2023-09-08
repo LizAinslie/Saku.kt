@@ -370,28 +370,34 @@ fun HomeScreen() {
                         extrude = Extrude.TopLeft,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        Column(verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall)) {
-                            SakuText(
-                                "Text Inputs",
-                                style = SakuTheme.typography.headingH2.copy(
-                                    fontSize = 24.sp,
-                                    color = SakuTheme.colors.foreground
-                                ),
-                                modifier = Modifier.padding(),
-                                lineHeight = 16.sp,
-                                overflow = TextOverflow.Ellipsis
-                            )
-
+                        Column {
                             Row(
-                                horizontalArrangement = Arrangement.spacedBy(1.dp),
-                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                modifier = Modifier.fillMaxWidth().width(IntrinsicSize.Max)
                             ) {
-                                ExampleTextField(corners = Corners.BottomLeft)
-                                SakuButton(
-                                    theme = SakuButtonTheme.GreenTonal,
-                                    corners = Corners.TopRight,
+                                SakuText(
+                                    "Example Table",
+                                    style = SakuTheme.typography.headingH2.copy(
+                                        fontSize = 24.sp,
+                                        color = SakuTheme.colors.foreground
+                                    ),
+                                    modifier = Modifier.padding(),
+                                    lineHeight = 16.sp,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+
+                                Row (
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall, Alignment.End)
                                 ) {
-                                    SakuText("Go")
+                                    SakuButton(theme = SakuButtonTheme.GreenTonal, padding = PaddingValues(SakuTheme.dimensions.basePaddingSmall * 1.5f)) {
+                                        SakuIcon(
+                                            imageVector = FeatherIcons.Plus,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                    }
+                                    ExampleTextField(placeholder = "Filter Table")
                                 }
                             }
                         }

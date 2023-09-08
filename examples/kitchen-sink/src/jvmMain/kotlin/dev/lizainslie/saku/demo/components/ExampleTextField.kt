@@ -14,6 +14,7 @@ fun ExampleTextField(
     icon: ImageVector = FeatherIcons.Search,
     placeholder: String = "Search",
     corners: Corners = Corners.Both,
+    modifier: Modifier = Modifier,
 ) {
     var value by remember { mutableStateOf("") }
 
@@ -23,5 +24,6 @@ fun ExampleTextField(
         icon = icon,
         placeholder = placeholder,
         corners = corners,
+        modifier = modifier
     )
 }
