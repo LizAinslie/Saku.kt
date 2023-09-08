@@ -5,22 +5,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.*
 import dev.lizainslie.saku.common.components.*
+import dev.lizainslie.saku.common.components.drawer.ClickableItemTheme
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
-import dev.lizainslie.saku.common.components.drawer.StaticIconDrawer
-import dev.lizainslie.saku.common.components.menu.SakuContextMenuWrapper
-import dev.lizainslie.saku.common.components.menu.SakuMenu
-import dev.lizainslie.saku.common.components.menu.SakuMenuItem
+import dev.lizainslie.saku.common.components.drawer.SakuStaticIconDrawer
 import dev.lizainslie.saku.demo.screens.EditorScreen
 import dev.lizainslie.saku.demo.screens.HomeScreen
 import ro.dragossusi.navigation.NavHost
@@ -35,7 +29,7 @@ fun App() {
     SakuTheme {
         SakuScaffold {
             Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.Bottom) {
-                StaticIconDrawer(
+                SakuStaticIconDrawer(
                     corners = Corners.TopRight
                 ) {
                     Column(
@@ -44,8 +38,8 @@ fun App() {
                             Alignment.Bottom
                         ),
                     ) {
-                        StaticIconDrawer.ClickableItem(
-                            theme = StaticIconDrawer.ClickableItemTheme.Blue,
+                        this@SakuStaticIconDrawer.ClickableItem(
+                            theme = ClickableItemTheme.Blue,
                             onClick = { navController.navigate("editor") },
                             active = navController.navBackstackEntry.value?.route == "editor",
                         ) {
@@ -56,7 +50,7 @@ fun App() {
                             )
                         }
 
-                        StaticIconDrawer.ClickableItem(
+                        this@SakuStaticIconDrawer.ClickableItem(
                             onClick = {navController.navigate("home")},
                             active = navController.navBackstackEntry.value?.route == "home",
                         ) {

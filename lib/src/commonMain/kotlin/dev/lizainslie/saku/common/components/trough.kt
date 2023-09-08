@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.Dp
 import dev.lizainslie.saku.common.theme.*
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
-import dev.lizainslie.saku.common.util.Extrude
 
 enum class TroughDirection {
     DOWN, UP, LEFT, RIGHT

@@ -1,5 +1,6 @@
 package dev.lizainslie.saku.common.components.drawer
 
+import androidx.compose.foundation.layout.LayoutScopeMarker
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
@@ -14,13 +15,13 @@ import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.common.util.Extrude
 
 @Composable
-fun StaticIconDrawer(
+fun SakuStaticIconDrawer(
     modifier: Modifier = Modifier,
     corner: Dp = SakuTheme.dimensions.cornerMedium,
     padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
     corners: Corners = Corners.Both,
     extrude: Extrude = Extrude.None,
-    content: @Composable () -> Unit
+    content: @Composable StaticIconDrawerScope.() -> Unit
 ) {
     SakuPanel(
         modifier = modifier,
@@ -29,31 +30,31 @@ fun StaticIconDrawer(
         corners = corners,
         extrude = extrude,
     ) {
-        content()
+        StaticIconDrawerScopeImpl.content()
     }
 }
 
 
-object StaticIconDrawer {
+internal fun SakuButtonTheme.toClickableItemTheme(activeForeground: Color) = ClickableItemTheme(this.background, this.hoverBackground, this.foreground, this.foreground, activeForeground)
 
-    internal fun SakuButtonTheme.toClickableItemTheme(activeForeground: Color) = ClickableItemTheme(this.background, this.hoverBackground, this.foreground, this.foreground, activeForeground)
-
-    data class ClickableItemTheme(
-        val background: Color,
-        val hoverBackground: Color,
-        val activeBackground: Color,
-        val foreground: Color,
-        val activeForeground: Color,
-    ) {
-        companion object {
-            val Primary = SakuButtonTheme.PrimaryTonal.toClickableItemTheme(colorLight)
-            val Red = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
-            val Yellow = SakuButtonTheme.YellowTonal.toClickableItemTheme(colorDark)
-            val Green = SakuButtonTheme.GreenTonal.toClickableItemTheme(colorDark)
-            val Blue = SakuButtonTheme.BlueTonal.toClickableItemTheme(colorDark)
-        }
+data class ClickableItemTheme(
+    val background: Color,
+    val hoverBackground: Color,
+    val activeBackground: Color,
+    val foreground: Color,
+    val activeForeground: Color,
+) {
+    companion object {
+        val Primary = SakuButtonTheme.PrimaryTonal.toClickableItemTheme(colorLight)
+        val Red = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
+        val Yellow = SakuButtonTheme.YellowTonal.toClickableItemTheme(colorDark)
+        val Green = SakuButtonTheme.GreenTonal.toClickableItemTheme(colorDark)
+        val Blue = SakuButtonTheme.BlueTonal.toClickableItemTheme(colorDark)
     }
+}
 
+@LayoutScopeMarker
+interface StaticIconDrawerScope {
     @Composable
     fun ClickableItem(
         onClick: () -> Unit,
@@ -63,6 +64,18 @@ object StaticIconDrawer {
         modifier: Modifier = Modifier,
         padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
         content: @Composable RowScope.() -> Unit,
+    )
+}
+
+object StaticIconDrawerScopeImpl : StaticIconDrawerScope {
+    override fun ClickableItem(
+        onClick: () -> Unit,
+        active: Boolean,
+        theme: ClickableItemTheme,
+        corners: Corners,
+        modifier: Modifier,
+        padding: PaddingValues,
+        content: RowScope.() -> Unit
     ) {
         val hoverBackground = if (active) theme.activeBackground else theme.hoverBackground
         val background = if (active) theme.activeBackground else theme.background
