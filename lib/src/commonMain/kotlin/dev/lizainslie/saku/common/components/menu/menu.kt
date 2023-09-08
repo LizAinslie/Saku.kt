@@ -15,17 +15,20 @@ import dev.lizainslie.saku.common.util.Corners
 
 @Composable
 fun SakuMenu(
+    modifier: Modifier = Modifier,
     border: Color = colorPink100,
     corner: Dp = SakuTheme.dimensions.cornerMedium,
     padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
     content: @Composable ColumnScope.() -> Unit
 ) {
     SakuPanel(
+        modifier = modifier,
         border = border,
         corner = corner,
         padding = padding,
     ) {
         Column(
+            modifier = Modifier.width(IntrinsicSize.Max),
             verticalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingSmall),
             content = content
         )
