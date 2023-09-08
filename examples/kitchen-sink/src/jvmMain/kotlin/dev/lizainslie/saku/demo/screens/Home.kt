@@ -401,7 +401,8 @@ fun HomeScreen() {
                                     ExampleTextField(placeholder = "Filter Table")
                                 }
 
-                                ExampleTable()
+                                // todo: fix the fucking table
+//                                ExampleTable()
                             }
                         }
                     }
