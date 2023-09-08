@@ -9,6 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import dev.lizainslie.saku.common.theme.*
 import dev.lizainslie.saku.common.util.CornerBoxShape
 import dev.lizainslie.saku.common.util.Corners
@@ -35,14 +37,15 @@ data class TroughTheme(
 
 @Composable
 fun SakuTrough(
-    direction: TroughDirection,
     value: Float,
+    direction: TroughDirection = TroughDirection.RIGHT,
     maxValue: Float = 100f,
     modifier: Modifier = Modifier,
     padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingSmall),
     troughColor: Color = colorPink200.copy(alpha = 0.8f),
     fillColor: Color = SakuTheme.colors.primary,
     foregroundColor: Color = SakuTheme.colors.foreground,
+    fontSize: TextUnit = 14.sp,
     corner: Dp = LocalCornerSize.current,
     corners: Corners = LocalCorners.current,
     content: @Composable (Float) -> Unit = {},
@@ -57,7 +60,7 @@ fun SakuTrough(
     }
 
     ProvideIconColor(foregroundColor) {
-        ProvideTextStyle(SakuTheme.typography.body.copy(foregroundColor)) {
+        ProvideTextStyle(SakuTheme.typography.button.copy(foregroundColor, fontSize = fontSize)) {
             Box(
                 modifier = modifier.background(
                     troughColor,
@@ -99,21 +102,39 @@ fun SakuTrough(
 
 @Composable
 fun SakuTrough(
-    direction: TroughDirection,
     value: Float,
+    direction: TroughDirection = TroughDirection.RIGHT,
     maxValue: Float = 100f,
     modifier: Modifier = Modifier,
-    padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingSmall),
+    padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingSmall / 2),
     theme: TroughTheme = TroughTheme.Primary,
+    fontSize: TextUnit = 14.sp,
     corner: Dp = LocalCornerSize.current,
     corners: Corners = LocalCorners.current,
     content: @Composable (Float) -> Unit = {},
 ) {
     SakuTrough(
-        direction, value, maxValue, modifier, padding,
+        value, direction, maxValue, modifier, padding,
         theme.troughColor, theme.fillColor, theme.foreground,
-        corner, corners, content
+        fontSize, corner, corners, content
     )
 }
 
-//fun SakuEditableTrough() {}
+@Composable
+fun SakuEditableTrough(
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    direction: TroughDirection = TroughDirection.RIGHT,
+    maxValue: Float = 100f,
+    modifier: Modifier = Modifier,
+    padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingSmall),
+    troughColor: Color = colorPink200.copy(alpha = 0.8f),
+    fillColor: Color = SakuTheme.colors.primary,
+    foregroundColor: Color = SakuTheme.colors.foreground,
+    fontSize: TextUnit = 14.sp,
+    corner: Dp = LocalCornerSize.current,
+    corners: Corners = LocalCorners.current,
+    content: @Composable (Float) -> Unit = {},
+) {
+    // todo. i'm eepy now
+}
