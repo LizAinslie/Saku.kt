@@ -1,5 +1,7 @@
 package dev.lizainslie.saku.common.components
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -73,6 +75,7 @@ fun SakuTrough(
                     modifier = Modifier
                         .align(alignment)
                         .background(fillColor, troughShape)
+                        .animateContentSize(animationSpec = spring(1.95f))
                         .let {
                              when (direction) {
                                  TroughDirection.UP, TroughDirection.DOWN -> it
@@ -112,3 +115,5 @@ fun SakuTrough(
         corner, corners, content
     )
 }
+
+//fun SakuEditableTrough() {}
