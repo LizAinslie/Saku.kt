@@ -21,7 +21,7 @@ fun SakuStaticIconDrawer(
     padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
     corners: Corners = Corners.Both,
     extrude: Extrude = Extrude.None,
-    content: @Composable StaticIconDrawerScope.() -> Unit
+    content: @Composable () -> Unit
 ) {
     SakuPanel(
         modifier = modifier,
@@ -30,31 +30,15 @@ fun SakuStaticIconDrawer(
         corners = corners,
         extrude = extrude,
     ) {
-        StaticIconDrawerScopeImpl.content()
+        content()
     }
 }
 
 
 internal fun SakuButtonTheme.toClickableItemTheme(activeForeground: Color) = ClickableItemTheme(this.background, this.hoverBackground, this.foreground, this.foreground, activeForeground)
 
-data class ClickableItemTheme(
-    val background: Color,
-    val hoverBackground: Color,
-    val activeBackground: Color,
-    val foreground: Color,
-    val activeForeground: Color,
-) {
-    companion object {
-        val Primary = SakuButtonTheme.PrimaryTonal.toClickableItemTheme(colorLight)
-        val Red = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
-        val Yellow = SakuButtonTheme.YellowTonal.toClickableItemTheme(colorDark)
-        val Green = SakuButtonTheme.GreenTonal.toClickableItemTheme(colorDark)
-        val Blue = SakuButtonTheme.BlueTonal.toClickableItemTheme(colorDark)
-    }
-}
 
-@LayoutScopeMarker
-interface StaticIconDrawerScope {
+object SakuStaticIconDrawer {
     @Composable
     fun ClickableItem(
         onClick: () -> Unit,
@@ -64,18 +48,6 @@ interface StaticIconDrawerScope {
         modifier: Modifier = Modifier,
         padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
         content: @Composable RowScope.() -> Unit,
-    )
-}
-
-object StaticIconDrawerScopeImpl : StaticIconDrawerScope {
-    override fun ClickableItem(
-        onClick: () -> Unit,
-        active: Boolean,
-        theme: ClickableItemTheme,
-        corners: Corners,
-        modifier: Modifier,
-        padding: PaddingValues,
-        content: RowScope.() -> Unit
     ) {
         val hoverBackground = if (active) theme.activeBackground else theme.hoverBackground
         val background = if (active) theme.activeBackground else theme.background
@@ -91,5 +63,22 @@ object StaticIconDrawerScopeImpl : StaticIconDrawerScope {
             corners = corners,
             content = content
         )
+    }
+}
+
+
+data class ClickableItemTheme(
+    val background: Color,
+    val hoverBackground: Color,
+    val activeBackground: Color,
+    val foreground: Color,
+    val activeForeground: Color,
+) {
+    companion object {
+        val Primary = SakuButtonTheme.PrimaryTonal.toClickableItemTheme(colorLight)
+        val Red = SakuButtonTheme.RedTonal.toClickableItemTheme(colorLight)
+        val Yellow = SakuButtonTheme.YellowTonal.toClickableItemTheme(colorDark)
+        val Green = SakuButtonTheme.GreenTonal.toClickableItemTheme(colorDark)
+        val Blue = SakuButtonTheme.BlueTonal.toClickableItemTheme(colorDark)
     }
 }
