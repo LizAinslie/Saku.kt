@@ -38,7 +38,7 @@ fun App() {
                             Alignment.Bottom
                         ),
                     ) {
-                        this@SakuStaticIconDrawer.ClickableItem(
+                        SakuStaticIconDrawer.ClickableItem(
                             theme = ClickableItemTheme.Blue,
                             onClick = { navController.navigate("editor") },
                             active = navController.navBackstackEntry.value?.route == "editor",
@@ -50,7 +50,7 @@ fun App() {
                             )
                         }
 
-                        this@SakuStaticIconDrawer.ClickableItem(
+                        SakuStaticIconDrawer.ClickableItem(
                             onClick = {navController.navigate("home")},
                             active = navController.navBackstackEntry.value?.route == "home",
                         ) {
