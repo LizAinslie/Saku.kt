@@ -36,7 +36,7 @@ data class Extrude(
 
 /**
  * A fairly versatile implementation of the required draw code for the stylistic
- * shipped box shape featured in this library. [padding] should correspond to
+ * chipped box shape featured in this library. [padding] should correspond to
  * the padding modifier on the element to which this shape is applied. [corner]
  * defines the size of corner cuts and extrusions. [corners] allows you to
  * choose specific corners to apply the style. [extrude] tells the shape whether
