@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layout
 
 @Composable
-fun Table(
+fun SakuTable(
     modifier: Modifier = Modifier,
     rowModifier: Modifier = Modifier,
     verticalLazyListState: LazyListState = rememberLazyListState(),
@@ -43,9 +43,7 @@ fun Table(
                                 val existingWidth = columnWidths[columnIndex] ?: 0
                                 val maxWidth = maxOf(existingWidth, placeable.width)
 
-                                if (maxWidth > existingWidth) {
-                                    columnWidths[columnIndex] = maxWidth
-                                }
+                                if (maxWidth > existingWidth) columnWidths[columnIndex] = maxWidth
 
                                 layout(width = maxWidth, height = placeable.height) {
                                     placeable.placeRelative(0, 0)

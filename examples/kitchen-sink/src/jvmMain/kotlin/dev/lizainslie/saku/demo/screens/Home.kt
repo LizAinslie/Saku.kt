@@ -19,6 +19,7 @@ import dev.lizainslie.saku.common.components.menu.SakuMenuItem
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.common.util.Extrude
+import dev.lizainslie.saku.demo.components.ExampleTable
 import dev.lizainslie.saku.demo.components.ExampleTextField
 
 @Composable
@@ -399,6 +400,8 @@ fun HomeScreen() {
                                     }
                                     ExampleTextField(placeholder = "Filter Table")
                                 }
+
+                                ExampleTable()
                             }
                         }
                     }
