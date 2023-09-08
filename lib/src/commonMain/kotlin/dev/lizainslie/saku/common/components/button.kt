@@ -1,5 +1,6 @@
 package dev.lizainslie.saku.common.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -72,8 +73,14 @@ fun SakuButton(
     val buttonShape = CornerBoxShape(padding, corner, corners, extrude)
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
-    val backgroundColor = if (isHovered) hoverBackground else background
-    val foregroundColor = if (isHovered) hoverForeground else foreground
+    val backgroundColor by animateColorAsState(
+        if (isHovered) hoverBackground else background,
+        label = "backgroundColor"
+    )
+    val foregroundColor by animateColorAsState(
+        if (isHovered) hoverForeground else foreground,
+        label = "foregroundColor"
+    )
 
     ProvideTextStyle(SakuTheme.typography.button.copy(foregroundColor)) {
         ProvideIconColor(foregroundColor) {
