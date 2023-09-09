@@ -1,6 +1,5 @@
 package dev.lizainslie.saku.common.components.drawer
 
-import androidx.compose.foundation.layout.LayoutScopeMarker
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
@@ -19,6 +18,7 @@ fun SakuStaticIconDrawer(
     modifier: Modifier = Modifier,
     corner: Dp = SakuTheme.dimensions.cornerMedium,
     padding: PaddingValues = PaddingValues(SakuTheme.dimensions.basePaddingMedium),
+    background: Color = Color.Transparent,
     corners: Corners = Corners.Both,
     extrude: Extrude = Extrude.None,
     content: @Composable () -> Unit
@@ -29,6 +29,7 @@ fun SakuStaticIconDrawer(
         corner = corner,
         corners = corners,
         extrude = extrude,
+        background = background,
     ) {
         content()
     }
