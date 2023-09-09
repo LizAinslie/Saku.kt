@@ -148,7 +148,7 @@ fun EditorScreen() {
                                 modifier = Modifier
                                     .height(320.dp)
                                     .fillMaxWidth()
-                                    .topBorder(SakuTheme.colors.secondary)
+                                    .topBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium)
                                     .padding(SakuTheme.dimensions.basePaddingMedium)
                             ) {
                             }
