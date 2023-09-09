@@ -63,7 +63,6 @@ fun SakuButton(
     foreground: Color = colorDark,
     hoverBackground: Color = background,
     hoverForeground: Color = foreground,
-    border: Color = Color.Unspecified,
     corner: Dp = LocalCornerSize.current,
     padding: PaddingValues = SakuTheme.dimensions.buttonPaddingSmall,
     corners: Corners = LocalCorners.current,
@@ -99,11 +98,7 @@ fun SakuButton(
                     .background(
                         backgroundColor,
                         buttonShape,
-                    )
-                    .let {
-                        if (border != Color.Unspecified) it.border(1.dp, border, buttonShape)
-                        else it
-                    },
+                    ),
                 horizontalArrangement = horizontalArrangement,
                 verticalAlignment = verticalAlignment,
                 content = content
@@ -117,7 +112,6 @@ data class SakuButtonTheme(
     val foreground: Color,
     val hoverBackground: Color,
     val hoverForeground: Color = foreground,
-    val border: Color = Color.Unspecified,
 ) {
     companion object {
         val Primary = SakuButtonTheme(colorPink100, colorDark, colorPink110)
@@ -162,7 +156,6 @@ fun SakuButton(
         theme.foreground,
         theme.hoverBackground,
         theme.hoverForeground,
-        theme.border,
         corner,
         padding,
         corners,
