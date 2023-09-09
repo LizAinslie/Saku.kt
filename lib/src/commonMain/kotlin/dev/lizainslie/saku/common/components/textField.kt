@@ -1,5 +1,8 @@
 package dev.lizainslie.saku.common.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -45,6 +48,12 @@ fun SakuTextField(
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
 
+    val backgroundColor by animateColorAsState(
+        if (focused) focusBackground else background,
+        animationSpec = tween(200, easing = LinearEasing),
+        label = "backgroundColor",
+    )
+
     BasicTextField(
         modifier = Modifier.padding(padding),
         value = value,
@@ -57,7 +66,7 @@ fun SakuTextField(
         decorationBox = { innerTextField ->
             Row(
                 modifier
-                    .background(if (focused) focusBackground else background, inputShape)
+                    .background(backgroundColor, inputShape)
                 ,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(SakuTheme.dimensions.basePaddingMedium),

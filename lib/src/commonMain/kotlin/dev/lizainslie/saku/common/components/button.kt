@@ -1,6 +1,8 @@
 package dev.lizainslie.saku.common.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -73,12 +75,16 @@ fun SakuButton(
     val buttonShape = CornerBoxShape(padding, corner, corners, extrude)
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
+
     val backgroundColor by animateColorAsState(
         if (isHovered) hoverBackground else background,
-        label = "backgroundColor"
+        animationSpec = tween(200, easing = LinearEasing),
+        label = "backgroundColor",
     )
+
     val foregroundColor by animateColorAsState(
         if (isHovered) hoverForeground else foreground,
+        animationSpec = tween(200, easing = LinearEasing),
         label = "foregroundColor"
     )
 
