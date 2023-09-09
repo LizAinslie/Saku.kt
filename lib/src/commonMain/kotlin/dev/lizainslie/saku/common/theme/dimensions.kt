@@ -15,7 +15,8 @@ data class SakuDimensions(
     val buttonPaddingSmall: PaddingValues = PaddingValues(basePaddingSmall * 2, basePaddingSmall),
 
     val cornerSmall: Dp = dimensionBase,
-    val cornerMedium: Dp = cornerSmall * 2.5f
+    val cornerMedium: Dp = cornerSmall * 2.5f,
+    val cornerLarge: Dp = cornerMedium * 2.5f
 )
 
 internal val LocalDimensions = staticCompositionLocalOf { SakuDimensions() }
