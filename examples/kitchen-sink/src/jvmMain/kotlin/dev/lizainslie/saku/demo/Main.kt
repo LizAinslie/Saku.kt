@@ -27,10 +27,11 @@ fun App() {
     val navController = rememberNavController()
 
     SakuTheme {
-        SakuScaffold {
+        SakuImageScaffold {
             Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.Bottom) {
                 SakuStaticIconDrawer(
-                    corners = Corners.TopRight
+                    corners = Corners.TopRight,
+                    background = SakuTheme.colors.background,
                 ) {
                     Column(
                         verticalArrangement = Arrangement.spacedBy(
