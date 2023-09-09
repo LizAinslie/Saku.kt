@@ -24,3 +24,4 @@ rootProject.name = "saku"
 
 include(":lib")
 include(":examples:kitchen-sink")
+include(":examples:editor")

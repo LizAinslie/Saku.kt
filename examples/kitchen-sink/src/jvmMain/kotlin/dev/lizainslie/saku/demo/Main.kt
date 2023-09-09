@@ -11,11 +11,9 @@ import androidx.compose.ui.window.application
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.*
 import dev.lizainslie.saku.common.components.*
-import dev.lizainslie.saku.common.components.drawer.ClickableItemTheme
 import dev.lizainslie.saku.common.theme.SakuTheme
 import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.common.components.drawer.SakuStaticIconDrawer
-import dev.lizainslie.saku.demo.screens.EditorScreen
 import dev.lizainslie.saku.demo.screens.HomeScreen
 import ro.dragossusi.navigation.NavHost
 import ro.dragossusi.navigation.rememberNavController
@@ -39,17 +37,17 @@ fun App() {
                             Alignment.Bottom
                         ),
                     ) {
-                        SakuStaticIconDrawer.ClickableItem(
-                            theme = ClickableItemTheme.Blue,
-                            onClick = { navController.navigate("editor") },
-                            active = navController.navBackstackEntry.value?.route == "editor",
-                        ) {
-                            SakuIcon(
-                                imageVector = FeatherIcons.PenTool,
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp),
-                            )
-                        }
+//                        SakuStaticIconDrawer.ClickableItem(
+//                            theme = ClickableItemTheme.Blue,
+//                            onClick = { navController.navigate("editor") },
+//                            active = navController.navBackstackEntry.value?.route == "editor",
+//                        ) {
+//                            SakuIcon(
+//                                imageVector = FeatherIcons.PenTool,
+//                                contentDescription = null,
+//                                modifier = Modifier.size(16.dp),
+//                            )
+//                        }
 
                         SakuStaticIconDrawer.ClickableItem(
                             onClick = {navController.navigate("home")},
@@ -69,10 +67,6 @@ fun App() {
                     startRoute = "home") {
                     composable("home") {
                         HomeScreen()
-                    }
-
-                    composable("editor") {
-                        EditorScreen()
                     }
                 }
             }

@@ -1,14 +1,17 @@
-package dev.lizainslie.saku.demo.screens
+package dev.lizainslie.saku.examples.editor.windows
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.window.WindowDraggableArea
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.ApplicationScope
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.rememberWindowState
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Edit
 import compose.icons.feathericons.Folder
@@ -21,9 +24,17 @@ import dev.lizainslie.saku.common.util.Corners
 import dev.lizainslie.saku.common.util.bottomBorder
 import dev.lizainslie.saku.common.util.rightBorder
 import dev.lizainslie.saku.common.util.topBorder
+import ro.dragossusi.navigation.rememberNavController
 
 @Composable
-fun EditorScreen() {
+fun ApplicationScope.EditorWindow() = Window(
+    onCloseRequest = ::exitApplication,
+    transparent = true,
+    undecorated = true,
+    state = rememberWindowState(),
+) {
+    val navController = rememberNavController()
+
     val navItemTheme = ClickableItemTheme(
         Color.Transparent,
         SakuTheme.colors.primary.copy(alpha = .3f),
@@ -31,29 +42,20 @@ fun EditorScreen() {
         SakuTheme.colors.primary,
         SakuTheme.colors.foreground,
     )
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            SakuText(
-                "Saku.kt // Editor UI",
-                style = SakuTheme.typography.headingH1.copy(fontSize = 72.sp, fontWeight = FontWeight.Bold)
-            )
 
-            SakuColorScaffold(
-                modifier = Modifier.width(1600.dp).height(900.dp),
-                corners = Corners.Both,
-                border = SakuTheme.colors.primary
+    SakuTheme {
+        SakuColorScaffold(
+            modifier = Modifier.fillMaxSize(),
+            corners = Corners.Both,
+            border = SakuTheme.colors.primary
+        ) {
+            Column(
+                modifier = Modifier
+                    .matchParentSize()
+                    .height(IntrinsicSize.Max),
             ) {
-                Column(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .height(IntrinsicSize.Max)
-                    ,
-                ) {
-                    Row (
+                WindowDraggableArea {
+                    Row(
                         modifier = Modifier
                             .bottomBorder(SakuTheme.colors.secondary, 1.dp)
                             .fillMaxWidth(),
@@ -84,7 +86,7 @@ fun EditorScreen() {
                         }
 
                         SakuText(
-                            "Editing: user:lizzy:code/file.js",
+                            "Editing: user:lizzy:/code/file.js",
                             style = SakuTheme.typography.body.copy(
                                 fontSize = 16.sp,
                                 color = SakuTheme.colors.foreground.copy(alpha = .8f)
@@ -94,6 +96,10 @@ fun EditorScreen() {
                         )
 
                         SakuButton(
+                            onClick = {
+                                // todo: prompt
+                                exitApplication()
+                            },
                             theme = SakuButtonTheme.RedTonal,
                             corners = Corners.TopRight,
                             corner = SakuTheme.dimensions.cornerMedium,
@@ -106,52 +112,51 @@ fun EditorScreen() {
                             )
                         }
                     }
-                    Row(
-                        modifier = Modifier.fillMaxSize()
+                }
+                Row(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .rightBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium)
+                    ) {
+                        SakuStaticIconDrawer {
+                            SakuStaticIconDrawer.ClickableItem(
+                                {},
+                                theme = navItemTheme
+                            ) {
+                                SakuIcon(
+                                    imageVector = FeatherIcons.Folder,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        }
+                    }
+                    Column(
+                        modifier = Modifier
+                            .width(240.dp)
+                            .fillMaxHeight()
+                            .height(IntrinsicSize.Max)
+                            .rightBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium),
+                        verticalArrangement = Arrangement.Bottom,
                     ) {
                         Column(
                             modifier = Modifier
-                                .fillMaxHeight()
-                                .rightBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium)
+                                .fillMaxWidth()
+                                .padding(SakuTheme.dimensions.basePaddingMedium)
                         ) {
-                            SakuStaticIconDrawer {
-                                SakuStaticIconDrawer.ClickableItem(
-                                    {},
-                                    theme = navItemTheme
-                                ) {
-                                    SakuIcon(
-                                        imageVector = FeatherIcons.Folder,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(16.dp)
-                                    )
-                                }
-                            }
+                            // todo: file tree
                         }
+
                         Column(
                             modifier = Modifier
-                                .width(240.dp)
-                                .fillMaxHeight()
-                                .height(IntrinsicSize.Max)
-                                .rightBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium),
-                            verticalArrangement = Arrangement.Bottom,
+                                .height(320.dp)
+                                .fillMaxWidth()
+                                .topBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium)
+                                .padding(SakuTheme.dimensions.basePaddingMedium)
                         ) {
-//                            Column(
-//                                modifier = Modifier
-//                                    .fillMaxHeight()
-//                                    .fillMaxWidth()
-//                                    .padding(SakuTheme.dimensions.basePaddingMedium)
-//                            ) {
-//                                // todo: file tree
-//                            }
-
-                            Column(
-                                modifier = Modifier
-                                    .height(320.dp)
-                                    .fillMaxWidth()
-                                    .topBorder(SakuTheme.colors.secondary, corner = SakuTheme.dimensions.cornerMedium)
-                                    .padding(SakuTheme.dimensions.basePaddingMedium)
-                            ) {
-                            }
                         }
                     }
                 }
