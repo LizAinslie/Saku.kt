@@ -89,10 +89,6 @@ kotlin {
             }
         }
         publications {
-//            register<MavenPublication>("gpr") {
-//                from(components["java"])
-//            }
-
             matching { it.name in publicationsFromMainHost }.all {
                 val targetPublication = this@all
                 tasks.withType<AbstractPublishToMaven>()
@@ -100,8 +96,6 @@ kotlin {
                     .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
             }
         }
-
-
     }
 }
 
