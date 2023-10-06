@@ -26,4 +26,5 @@ jobs:
         with:
           arguments: lib:publishAllPublicationsToGitHubPackagesRepository
         env:
+          USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
