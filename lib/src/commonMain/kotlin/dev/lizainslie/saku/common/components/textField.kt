@@ -51,7 +51,6 @@ fun SakuTextField(
     val backgroundColor by animateColorAsState(
         if (focused) focusBackground else background,
         animationSpec = tween(200, easing = LinearEasing),
-        label = "backgroundColor",
     )
 
     BasicTextField(

@@ -1,14 +1,13 @@
 package dev.lizainslie.saku.common.theme
 
-import android.annotation.SuppressLint
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
+import org.jetbrains.compose.demo.widgets.platform.R
 
-@SuppressLint("DiscouragedApi")
-internal actual fun font(name: String, res: String, weight: FontWeight, style: FontStyle): Font {
-    val context = LocalContext.current
-    val id = context.resources.getIdentifier(res, "font", context.packageName)
-    return Font(id, weight, style)
-}
+actual val bellota: FontFamily = FontFamily(
+    Font(R.font.bellota),
+)
+
+actual val bellotaText: FontFamily = FontFamily(
+    Font(R.font.bellota_text)
+)

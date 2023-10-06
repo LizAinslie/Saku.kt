@@ -14,7 +14,10 @@ plugins {
 version = rootProject.version
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
+
     jvm("desktop")
 
     listOf(
@@ -43,9 +46,9 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.activity:activity-compose:1.7.2")
+                api("androidx.activity:activity-compose:1.8.0")
                 api("androidx.appcompat:appcompat:1.6.1")
-                api("androidx.core:core-ktx:1.10.1")
+                api("androidx.core:core-ktx:1.12.0")
             }
         }
 
@@ -67,6 +70,38 @@ kotlin {
                 implementation(compose.desktop.common)
             }
         }
+    }
+
+    // publish
+
+    val publicationsFromMainHost =
+        listOf(jvm()).map { it.name } + "kotlinMultiplatform"
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/LizAinslie/Saku.kt")
+                credentials {
+                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+//            register<MavenPublication>("gpr") {
+//                from(components["java"])
+//            }
+
+            matching { it.name in publicationsFromMainHost }.all {
+                val targetPublication = this@all
+                tasks.withType<AbstractPublishToMaven>()
+                    .matching { it.publication == targetPublication }
+                    .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
+            }
+        }
+
+
     }
 }
 
@@ -94,8 +129,14 @@ android {
     compileSdk = 33
     namespace = "org.jetbrains.compose.demo.widgets.platform"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].res.srcDirs(
+        "src/commonMain/resources",
+        "src/androidMain/resources"
+    )
+    sourceSets["main"].resources.srcDirs(
+        "src/commonMain/resources",
+        "src/androidMain/resources"
+    )
 
     defaultConfig {
         minSdk = 26
@@ -108,4 +149,3 @@ android {
         jvmToolchain(11)
     }
 }
-
