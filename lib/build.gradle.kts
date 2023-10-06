@@ -75,7 +75,7 @@ kotlin {
     // publish
 
     val publicationsFromMainHost =
-        listOf(jvm()).map { it.name } + "kotlinMultiplatform"
+        listOf(jvm("desktop"), android()).map { it.name } + "kotlinMultiplatform"
 
     publishing {
         repositories {
