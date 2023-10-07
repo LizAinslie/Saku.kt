@@ -16,6 +16,7 @@ version = rootProject.version
 kotlin {
     android {
         publishLibraryVariants("release", "debug")
+        publishLibraryVariantsGroupedByFlavor = true
     }
 
     jvm("desktop")
@@ -88,12 +89,16 @@ kotlin {
                 }
             }
         }
+
         publications {
             matching { it.name in publicationsFromMainHost }.all {
+
                 val targetPublication = this@all
                 tasks.withType<AbstractPublishToMaven>()
                     .matching { it.publication == targetPublication }
-                    .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
+                    .configureEach {
+                        onlyIf { findProperty("isMainHost") == "true" }
+                    }
             }
         }
     }
