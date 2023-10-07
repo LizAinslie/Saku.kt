@@ -97,7 +97,7 @@ kotlin {
                 tasks.withType<AbstractPublishToMaven>()
                     .matching { it.publication == targetPublication }
                     .configureEach {
-                        onlyIf { findProperty("isMainHost") == "true" }
+                        onlyIf { (System.getenv("BUILD_CROSS") ?: "true") == "true" }
                     }
             }
         }
