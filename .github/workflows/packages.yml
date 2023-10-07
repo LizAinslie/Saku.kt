@@ -27,6 +27,6 @@ jobs:
         with:
           arguments: lib:publish
         env:
-          BUILD_CROSS: ${{ matrix.os == "ubuntu-latest" }}
+          BUILD_CROSS: ${{ matrix.os == 'ubuntu-latest' }}
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
