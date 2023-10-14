@@ -33,4 +33,14 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+
+    nativeApplication {
+
+        distributions {
+            targetFormats(TargetFormat.Dmg)
+
+            packageName = "Editor"
+            packageVersion = "1.0.0"
+        }
+    }
 }

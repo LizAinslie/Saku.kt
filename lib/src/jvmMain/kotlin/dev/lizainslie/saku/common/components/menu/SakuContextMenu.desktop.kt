@@ -3,7 +3,6 @@ package dev.lizainslie.saku.common.components.menu
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.PointerMatcher
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.onClick
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
