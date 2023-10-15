@@ -29,8 +29,8 @@ import ro.dragossusi.navigation.rememberNavController
 @Composable
 fun ApplicationScope.EditorWindow() = Window(
     onCloseRequest = ::exitApplication,
-//    transparent = true,
-//    undecorated = true,
+    transparent = true,
+    undecorated = true,
     state = rememberWindowState(),
 ) {
     val navController = rememberNavController()

@@ -26,7 +26,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun SakuImageScaffold(
     modifier: Modifier = Modifier,
-    background: Painter = painterResource("img/background.jpg"),
+    background: Painter = painterResource("background.jpg"),
     corner: Dp = SakuTheme.dimensions.cornerLarge,
     corners: Corners = Corners.None,
     content: @Composable BoxScope.() -> Unit
